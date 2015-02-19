@@ -1,0 +1,283 @@
+
+<html>
+  <head>
+    <title>tgen intersection tool</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+  </head>
+
+
+  <body>
+
+
+<div class="container">
+
+
+<div class="tgenHeader">
+<img src="https://www.tgen.org/media/58629/TGEN_LOGO.png"/>
+</div>
+
+
+<div class="row">
+
+	<div class="col-xs-4">
+
+
+
+
+<div class="tabbable boxed parentTabs">
+    <ul class="nav nav-tabs">
+        
+
+        <li class="active"><a href="#set1" onclick="from_csv()">From Gene List CSV</a>
+        </li>
+
+        <li><a href="#set2" onclick="fromDb()">From DB</a>
+        </li>
+
+
+        
+        
+    </ul>
+
+
+    <div class="tab-content">
+
+
+
+      <div class="tab-pane fade active in" id="set1">
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#sub21">List 1</a>
+                    </li>
+                    <li><a href="#sub22">List 2</a>
+                    </li>
+                    <li><a href="#sub23">List 3</a>
+                    </li>
+                    <li><a href="#sub24">List 4</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="sub21">
+                        <textarea id="gl1" class="form-control"></textarea>
+
+                    </div>
+                    <div class="tab-pane fade" id="sub22">
+                        <textarea id="gl2" class="form-control"></textarea>
+
+                    </div>
+                    <div class="tab-pane fade" id="sub23">
+                        <textarea id="gl3" class="form-control"></textarea>
+                    </div>
+
+                    <div class="tab-pane fade" id="sub24">
+                        <textarea id="gl4" class="form-control"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tab-pane fade" id="set2">
+            <div class="db_select">
+              <p> Select DB: <select id="selectDb"></select> <button onclick="getSampleList()" class="btn btn-default btn-sm">Get Samples</button></p>
+            </div>
+              <p id="loading"> loading... </p>
+              <select multiple class="form-control" id="zz"></select>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+</div>
+
+
+
+<div class="col-xs-8">
+
+
+
+<div class="row text-center">
+ 
+<div id="in_db_tab" style="margin-top:12px;">
+
+
+
+<p> Samples You've Selected (up to four) : </p>
+
+<div id="chosen"></div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+<div id="in_csv_tab" class="text-center">
+<button onclick="geneList()" class="btn btn-primary" style="margin-top:8px;"> Submit Gene List </button>
+</div>
+
+
+
+<div class="text-center">
+
+<div id="query_db">
+    <form>
+      <select name="dropdown" id="ddlViewBy">
+      <option value="gene">gene</option>
+      <option value="biomarker">biomarker</option>
+      <option value="effect">effect</option>
+      <option value="aberration.aberration_type">aberration type</option>
+
+      </select>
+      <button id="somebutton" type="button" style="margin-top:8px;">Find Intersection!</button>
+      <div id="load_icon"><img src="http://www.cieh.org/MyCIEH/images/loading.gif"/> </div>
+
+    </form>
+</div>
+      
+      <div class="dynamic"></div>
+
+
+<div class="accord_wrapper">
+<div id="accordion">
+        <h3>List A</h3>
+        <div id="cA">
+          <h5></h5>
+          <p></p>
+        </div>
+  
+        <h3>List B</h3>
+        <div id="cB">
+          <h5></h5>
+          <p></p>
+        </div>
+
+        <h3>List C</h3>
+        <div id="cC">
+          <h5></h5>
+          <p></p>
+        </div>
+
+        <h3>List D</h3>
+        <div id="cD">
+          <h5></h5>
+          <p></p>
+        </div>
+
+
+
+
+        <h3>A and B</h3>
+        <div id="cAB">
+        <h5></h5>
+          <p></p>
+        </div>
+
+        <h3>A and C</h3>
+        <div id="cAC" >
+        <h5></h5>
+          <p></p>
+        </div>
+
+        <h3>A and D</h3>
+        <div id="cAD">
+        <h5></h5>
+          <p></p>
+        </div>
+
+        <h3>B and C</h3>
+        <div id="cBC">
+        <h5></h5>
+          <p></p>
+        </div>
+
+        <h3>B and D</h3>
+        <div id="cBD" >
+        <h5></h5>
+          <p></p>
+        </div>
+
+        <h3>C and D</h3>
+        <div id="cCD">
+        <h5></h5>
+          <p></p>
+        </div>
+
+
+
+
+
+
+
+        <h3>A B and C</h3>
+        <div id="cABC">
+        <h5></h5>
+          <p></p>
+        </div>
+        <h3>A B and D</h3>
+        <div id="cABD">
+        <h5></h5>
+          <p></p>
+        </div>
+        <h3>A C and D</h3>
+        <div id="cACD">
+        <h5></h5>
+          <p></p>
+        </div>
+        <h3>B C and D</h3>
+        <div id="cBCD">
+        <h5></h5>
+          <p></p>
+        </div>
+
+
+        <h3>A B C and D</h3>
+        <div id="cABCD">
+        <h5></h5>
+          <p></p>
+        </div>
+
+</div>
+</div>
+
+
+
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+</body>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="/javascripts/venn.js"></script>
+<script src="/javascripts/listPopulation.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="/javascripts/intersectionClient.js"></script>
+
+
+
+</html>
