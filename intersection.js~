@@ -22,7 +22,7 @@ var __insert = s1+s2+s3+s4;
     },
 
     /*
-      Find intersection of up to four samples by pulling their distinct values (either
+      Find intersection of up to three samples by pulling their distinct values (either
       gene, biomarker, effect, or aberration type) from the DB. A temp document is then
       created (removed first, to clear it if it already exists or from last use), 
       which then contains the output of an aggregate pipeline that finds the intersection.
