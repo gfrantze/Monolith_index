@@ -18,5 +18,5 @@ Establish connection to DB.
 */
 
 module.exports = {
-    db: new Db('markers', new Server('leeloo.tgen.org', 27059),{safe:true})
+    db: new Db('markers', new Server('leeloo.tgen.org', 27058),{safe:true})
 };

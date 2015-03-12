@@ -1,0 +1,98 @@
+<!doctype html>
+<meta charset="utf-8">
+ 
+<script src="http://www.d3plus.org/js/d3.js"></script>
+<script src="javascripts/d3plus.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+
+
+<div id="viz"></div>
+
+
+ 
+<script>
+
+var hasBeenDrawn;
+var i;
+
+
+function drawVis(data){
+
+
+	var visualization = d3plus.viz()
+    .container("#viz")
+    .data(data)
+    .type("tree_map")
+    .id(["group","name"])
+    .depth(1)
+    .size("value")
+    .tooltip({
+        "file size": ["value"],
+        })
+    .draw()
+
+    hasBeenDrawn = true;
+}
+
+
+
+function redraw_tm(item){
+
+console.log(item);
+var g = (item.split("/").length).toString();
+
+console.log("have item");
+
+
+$.ajax({
+	    	type: "POST",
+	    	url: "/tmworking/redraw",
+	    	data:{i:item,g:g,g1:(parseInt(g)+1).toString() , g2: (parseInt(g)+2).toString(),g3:(parseInt(g)+3).toString(),g4:(parseInt(g)+4).toString()  },
+	    	timeout:60000,
+
+	    	success: function(res){
+	  	
+	  			console.log("data received");
+	    		drawVis(res);
+		    },
+
+		    error: function(request, status, err){
+		    	
+		    }
+
+
+		    });
+
+}
+
+
+$(window).click(function(e) {
+	if(hasBeenDrawn){
+	    var item = $(".d3plus_tooltip_title").text();
+	    i = item.toLowerCase();
+	   
+	    if(item){
+	    	redraw_tm(String(item.toLowerCase() ));
+		}
+	}
+});
+
+
+
+function init(){
+
+$.get('/tmworking/tm_flat', function(data) { 
+	console.log("data is");
+	console.log(data);
+	drawVis(data);
+});
+
+}
+
+window.onload = init;
+
+
+
+</script>

@@ -66,7 +66,7 @@ diagram.svg.selectAll("path")
             .style("fill-opacity", .1)
             .style("stroke-opacity", 1);
         tooltip.transition().style("opacity", .9);
-        tooltip.text(d.size + " users");
+        tooltip.text(d.size + " items");
     })
     .on("mouseout", function(d, i) {
         d3.select(this).transition()
@@ -324,6 +324,15 @@ iabcd:[]
 }
 
 
+//highlight null
+function hlNull(item){
+$.each($("#chosen").find("p") , function(key,value){ 
+	if( item == $(value).text().split(" ")[0] ){
+		$(value).css({"background-color":"Yellow"});
+	}
+});
+}
+
 /*
 
 Alerts user if DB selection is null.
@@ -333,14 +342,12 @@ Alerts user if DB selection is null.
 
 function nullcheck(data,a,b,c,d){
 
-	if(!a) {   alert(data.s1 + " is null :-(");  }
-	else if(!b) {   alert(data.s2 + " is null :-(");  }
-	else if(!c) {   alert(data.s3 + " is null :-(");  }
-        else if(!d) {   alert(data.s4 + " is null :-(");  }
+	if(!a) {   alert(data.s1 + " is null :-("); hlNull(data.s1);  }
+	if(!b) {   alert(data.s2 + " is null :-("); hlNull(data.s2);  }
+	if(!c) {   alert(data.s3 + " is null :-("); hlNull(data.s3); }
+    if(!d) {   alert(data.s4 + " is null :-("); hlNull(data.s4); }
 
 }
-
-
 
 
 /*
@@ -385,7 +392,7 @@ $('#somebutton').click(function() {
 
 	    $.ajax({
 	    	type: "POST",
-	    	url: "/",
+	    	url: "/ia/",
 	    	data:data,
 	    	timeout:180000,
 

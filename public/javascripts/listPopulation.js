@@ -20,6 +20,8 @@ $("#loading").hide();
 
 function populateSampleList(data){
 
+data = data.sort();
+
 $.each(data, function(key, value) {   
      $('#zz')
          .append($("<option></option>")
@@ -41,7 +43,7 @@ function getSampleList(){
 
 $("#zz").empty();
 
-$.post('/loadList', {    option:$("#selectDb option:selected").val()   }, function(res) {
+$.post('/ia/loadList', {    option:$("#selectDb option:selected").val()   }, function(res) {
 
 	$("#loading").show();
 
@@ -65,7 +67,7 @@ function getDBs(){
 
 $("#loading").hide();
 
-$.get( "/loadDb", function( data ) {
+$.get( "/ia/loadDb", function( data ) {
 	populateCollectionList(data);
 });
 

@@ -63,3 +63,8 @@ circle:hover {
   opacity: 0;
 }
 
+.tgenHeader{
+
+  display:inline-block;
+}
+
