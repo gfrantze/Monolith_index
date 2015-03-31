@@ -425,7 +425,7 @@ $('#somebutton').click(function() {
 	    		if(res.origA && res.origB && res.origC && res.origD){
 	    		fourSetBoilerPlate(res);
 	    		} else {
-	    			nullcheck(data,res.origA,res.origB,res.origC);
+	    			nullcheck(data,res.origA,res.origB,res.origC,res.origD);
 	    		}
 	    	}
 

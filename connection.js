@@ -8,7 +8,7 @@ var Db = require('mongodb').Db,
     GridStore = require('mongodb').GridStore,
     Grid = require('mongodb').Grid,
     Code = require('mongodb').Code,
-    BSON = require('mongodb').pure().BSON,
+    BSON = require('mongodb').BSON,
     assert = require('assert');
 
 /*
@@ -18,5 +18,6 @@ Establish connection to DB.
 */
 
 module.exports = {
-    db: new Db('markers', new Server('leeloo.tgen.org', 27058),{safe:true})
+    db: new Db('markers', new Server('leeloo.tgen.org', 27059),{safe:true}),
+    _db2: new Db('markers', new Server('leeloo.tgen.org', 27058),{safe:true})
 };

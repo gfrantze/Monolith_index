@@ -1,25 +1,25 @@
 <html>
   <head>
     <title>tgen intersection tool</title>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
+
 <style>
 
-
 .icon{
-	width: 128px;
-	height: auto;
+  width: 128px;
+  height: auto;
 }
 .tool{
-	border: 1px solid lightgrey;
-	min-height:220px;
-	padding: 10px 0 0 0;
+  border: 1px solid lightgrey;
+  min-height:220px;
+  padding: 10px 0 0 0;
 }
 
 .tool:hover{
-	background:LightBlue;
+  background:LightBlue;
 }
 
 .tool a {
@@ -36,12 +36,10 @@
 }
 
 .tool img{
-	height:auto;
-	width:140px;
-	padding:4px 0 0 0;
+  height:auto;
+  width:140px;
+  padding:4px 0 0 0;
 }
-
-
 
 
 </style>
@@ -66,34 +64,14 @@
 		</div>
 		
 		<div class="col-xs-4 tool">
-				<b>Disk Image Treemap Viewer v1 (not currently working)</b>
-				<a href="/tmworking"></a>
+				<b>Disk Image Treemap Viewer</b>
+				<a href="/tml"></a>
 				<img src="http://knowhowdesign.com/wp-content/uploads/2011/11/21/four-javascript-libraries-for-dynamic-charts-and-interactive-data-2011/d3-js-treemap.jpg"/>
 		</div>
 
 		<div class="col-xs-4 tool">
-			<b>Disk Image Treemap Viewer v2</b>
-				<a href="/tm"></a>
-				<img src="http://www.cs.umd.edu/hcil/treemap-history/million-treemap.jpg"/>
-		</div>
-		
-	</div>
+			
 
-
-	<div class="row">
-
-		<div class="col-xs-4 tool">
-				<b>Disk Image Treemap Viewer v3</b>
-				<a href="/tml"></a>
-				<img src="https://dhs.stanford.edu/wp-content/uploads/2011/07/CostaRica.png"/>
-		</div>
-		
-		<div class="col-xs-4 tool">
-
-		</div>
-
-		<div class="col-xs-4 tool">
-				
 		</div>
 		
 	</div>
