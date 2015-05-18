@@ -9,12 +9,11 @@ function getLS(myQuery) {
         mc: $("#chn").val()
     };
     $("#g1").empty();
-
-    console.log(myQuery);
+    console.log(data);
 
     $.ajax({
         type: "POST",
-        url: "/tml/ls",
+        url: "/ls",
         data: data,
         timeout: 180000,
         success: function(res) {
@@ -119,7 +118,7 @@ function curryInit(elem, _json, tt) {
 
             nl_copy = nameList[0];
 
-            $(tt).html("<p>" + 'PATH: ' + nameList + '. ITEM SIZE = ' + Math.round((d.size / 1000000000) * 100) / 100 + ' GB ' + "</p>");
+            $(tt).html("<p>" + '<b>PATH:</b> ' + nameList + ' <br><b>ITEMSIZE:</b> ' + Math.round((d.size / 1000000000) * 100) / 100 + ' GB ' + "</p>");
 
         })
 
@@ -181,7 +180,7 @@ function newImg() {
 
     $.ajax({
         type: "POST",
-        url: "/tml/tmdata_update",
+        url: "/tmdata_update",
         data: data,
         timeout: 180000,
         success: function(res) {

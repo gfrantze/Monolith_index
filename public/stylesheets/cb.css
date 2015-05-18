@@ -57,7 +57,7 @@ rect {
 
 .formatting{
   font-family: helvetica;
-  font-size: 16px;
+  font-size: 11px;
   font-style: normal;
   font-variant: normal;
   font-weight: 500;
@@ -129,6 +129,7 @@ line {
   max-height: 30%;
   overflow: auto;
   word-wrap: break-word;
+  font-size:10px;
 }
 
 .popup img{
