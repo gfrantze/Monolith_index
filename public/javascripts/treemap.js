@@ -13,7 +13,7 @@ function getLS(myQuery) {
 
     $.ajax({
         type: "POST",
-        url: "/ls",
+        url: "/tml/ls",
         data: data,
         timeout: 180000,
         success: function(res) {
@@ -180,7 +180,7 @@ function newImg() {
 
     $.ajax({
         type: "POST",
-        url: "/tmdata_update",
+        url: "/tml/tmdata_update",
         data: data,
         timeout: 180000,
         success: function(res) {
