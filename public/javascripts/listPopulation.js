@@ -44,7 +44,7 @@ function getSampleList() {
 
     $("#zz").empty();
 
-    $.post('/loadList', {
+    $.post('/ia/loadList', {
         option: $("#selectDb option:selected").val()
     }, function(res) {
 
@@ -71,7 +71,7 @@ function getDBs() {
 
     $("#loading").hide();
 
-    $.get("/loadDb", function(data) {
+    $.get("/ia/loadDb", function(data) {
         populateCollectionList(data);
     });
 

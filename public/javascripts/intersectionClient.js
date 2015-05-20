@@ -525,7 +525,7 @@ $('#somebutton').click(function() {
 
         $.ajax({
             type: "POST",
-            url: "/",
+            url: "/ia/",
             data: data,
             timeout: 180000,
 
