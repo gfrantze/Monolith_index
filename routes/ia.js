@@ -23,6 +23,12 @@ router.post('/loadList',function(req,res){
   
   db.open(function(err,db1){
 
+    if(err){
+      console.log("connection failed");
+    }
+
+    else{
+
     console.log('b');
   	db1.collection('files',function(err,files){
         
@@ -41,10 +47,11 @@ router.post('/loadList',function(req,res){
           res.json(result[0].projectRun);
 
         }); //end aggregate
-
-
-
     });
+
+
+    }
+
   });
 });
 
@@ -53,12 +60,21 @@ router.get('/loadDb',function(req,res,next){
   console.log('c');
 
   db.open(function(err,db2){
-    console.log('d');
-    db2.collectionNames(function(err,names){
-      db2.close();
 
-      res.json(names);
-    });
+    if(err){
+      console.log("connection failed");
+    }
+
+    else{
+      console.log('d');
+      db2.collectionNames(function(err,names){
+        db2.close();
+
+        res.json(names);
+      });
+
+    }
+
   });
 });
 
