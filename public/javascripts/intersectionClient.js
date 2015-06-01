@@ -294,6 +294,18 @@ function intersect(a, b) {
 }
 
 
+Array.prototype.unique = function() {
+    var a = [],
+        l = this.length;
+    for (var i = 0; i < l; i++) {
+        for (var j = i + 1; j < l; j++)
+            if (this[i] === this[j]) j = ++i;
+        a.push(this[i]);
+    }
+    return a;
+};
+
+
 /*
 
 Here is the logic for handling user entered gene lists. The input is split using a regular expression
@@ -347,19 +359,19 @@ function geneList() {
     $("#load_icon").show();
 
     if (document.getElementById("gl1").value) {
-        set.origA = document.getElementById("gl1").value.split(/[\s,]+/);
+        set.origA = document.getElementById("gl1").value.split(/[\s,]+/).unique();
         set.a = set.origA.length;
     }
     if (document.getElementById("gl2").value) {
-        set.origB = document.getElementById("gl2").value.split(/[\s,]+/);
+        set.origB = document.getElementById("gl2").value.split(/[\s,]+/).unique();
         set.b = set.origB.length;
     }
     if (document.getElementById("gl3").value) {
-        set.origC = document.getElementById("gl3").value.split(/[\s,]+/);
+        set.origC = document.getElementById("gl3").value.split(/[\s,]+/).unique();
         set.c = set.origC.length;
     }
     if (document.getElementById("gl4").value) {
-        set.origD = document.getElementById("gl4").value.split(/[\s,]+/);
+        set.origD = document.getElementById("gl4").value.split(/[\s,]+/).unique();
         set.d = set.origD.length;
     }
 
@@ -455,17 +467,44 @@ function prep_export() {
 
     var ids = ["#cA", "#cB", "#cC", "#cD", "#cAB", "#cAC", "#cAD", "#cBC", "#cBD", "#cCD", "#cABC", "#cABD", "#cACD", "#cBCD", "#cABCD"];
 
-    var csvContent = "data:text/csv;charset=utf-8,";
+    var csvContent = "data:text/tab-separated-values;charset=utf-8,";
 
 
     for (var i = 0; i < ids.length; i++) {
-        csvContent += $(ids[i]).attr('id') + "\n";
-        csvContent += $(ids[i]).find('p').text() + "\n\n";
+
+        csvContent += $(ids[i]).attr('id') + "\t";
+
+    }
+
+    csvContent += "\n";
+    var longest = 0;
+
+    for (var i = 0; i < ids.length; i++) {
+        var bid = $(ids[i]).find('p').text().split(",").length;
+        if (bid > longest) {
+            longest = bid;
+        }
     }
 
 
+    for (var j = 0; j < longest; j++) {
+        for (var i = 0; i < ids.length; i++) {
+
+            var unit = $(ids[i]).find('p').text().split(",");
+
+            if (unit[j]) {
+                csvContent += $.trim(unit[j]) + "\t";
+            } else {
+                csvContent += "\t";
+            }
+        }
+        csvContent += "\n";
+    }
+
+
+
     console.log(csvContent);
-    var encodedUri = encodeURI(csvContent);
+    var encodedUri = encodeURI(csvContent, 'genelist.tsv');
     window.open(encodedUri);
 
 
@@ -522,63 +561,73 @@ $('#somebutton').click(function() {
 
         ajaxInProg = true;
 
-
-        $.ajax({
-            type: "POST",
-            url: "/ia/",
-            data: data,
-            timeout: 180000,
-
-            success: function(res) {
-
-                clearLists();
+        if (data.u_db) {
 
 
-                if (res.error) {
-                    alert("error");
-                } else {
+            $.ajax({
+                type: "POST",
+                url: "/ia/",
+                data: data,
+                timeout: 180000,
+
+                success: function(res) {
+
+                    clearLists();
 
 
-                    if (sampleSize == 2) {
+                    if (res.error) {
+                        alert("error");
+                    } else {
 
-                        if (res.origA && res.origB) {
-                            twoSetBoilerPlate(res);
-                        } else {
-                            nullcheck(data, res.origA, res.origB, 1, 1);
+
+                        if (sampleSize == 2) {
+
+                            if (res.origA && res.origB) {
+                                twoSetBoilerPlate(res);
+                            } else {
+                                nullcheck(data, res.origA, res.origB, 1, 1);
+                            }
+                        } else if (sampleSize == 3) {
+
+                            if (res.origA && res.origB && res.origC) {
+                                threeSetBoilerPlate(res);
+                            } else {
+                                nullcheck(data, res.origA, res.origB, res.origC, 1);
+                            }
+                        } else if (sampleSize == 4) {
+
+                            if (res.origA && res.origB && res.origC && res.origD) {
+                                fourSetBoilerPlate(res);
+                            } else {
+                                nullcheck(data, res.origA, res.origB, res.origC);
+                            }
                         }
-                    } else if (sampleSize == 3) {
 
-                        if (res.origA && res.origB && res.origC) {
-                            threeSetBoilerPlate(res);
-                        } else {
-                            nullcheck(data, res.origA, res.origB, res.origC, 1);
-                        }
-                    } else if (sampleSize == 4) {
-
-                        if (res.origA && res.origB && res.origC && res.origD) {
-                            fourSetBoilerPlate(res);
-                        } else {
-                            nullcheck(data, res.origA, res.origB, res.origC);
-                        }
                     }
 
-                }
 
-
-                $("#load_icon").hide();
-                ajaxInProg = false;
-            },
-
-            error: function(request, status, err) {
-                if (status == "timeout") {
-                    alert("uhoh... looks like the server is a bit slow; the query timed out");
                     $("#load_icon").hide();
                     ajaxInProg = false;
+                },
+
+                error: function(request, status, err) {
+                    if (status == "timeout") {
+                        alert("uhoh... looks like the server is a bit slow; the query timed out");
+                        $("#load_icon").hide();
+                        ajaxInProg = false;
+                    }
                 }
-            }
 
 
-        });
+            });
+
+
+        } else{
+
+            alert("no connect ;|");
+            $("#load_icon").hide();
+
+        }
 
 
 
@@ -604,6 +653,52 @@ $("ul.nav-tabs a").click(function(e) {
 });
 
 
+//convert to .png
+
+
+d3.select("#save").on("click", function() {
+
+    $("canvas").hide();
+    $("#svgdataurl").hide();
+    $("#pngdataurl").hide();
+
+    var html = d3.select("svg")
+        .attr("version", 1.1)
+        .attr("xmlns", "http://www.w3.org/2000/svg")
+        .node().parentNode.innerHTML;
+
+    //console.log(html);
+    var imgsrc = 'data:image/svg+xml;base64,' + btoa(html);
+    var img = '<img src="' + imgsrc + '">';
+    d3.select("#svgdataurl").html(img);
+
+
+
+    var canvas = document.querySelector("canvas"),
+        context = canvas.getContext("2d");
+
+    var image = new Image;
+    image.src = imgsrc;
+    image.onload = function() {
+        context.drawImage(image, 0, 0);
+
+        var canvasdata = canvas.toDataURL("image/png");
+
+        var pngimg = '<img src="' + canvasdata + '">';
+        d3.select("#pngdataurl").html(pngimg);
+
+        var a = document.createElement("a");
+        a.download = "sample.png";
+        a.href = canvasdata;
+        a.click();
+    };
+
+    $("canvas").empty();
+    $("#svgdataurl").empty();
+    $("#pngdataurl").empty();
+
+});
+
 /*
 
 Initialize settings below; Grab DB list from the server and
@@ -611,6 +706,7 @@ hide certain elements that are to be triggered if gene list is clicked.
 Also initialize accordion. 
 
 */
+
 
 function init() {
 

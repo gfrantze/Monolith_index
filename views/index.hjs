@@ -54,15 +54,21 @@
 	<div class="row">
 
 		<div class="col-xs-4 tool">
-				<b>Gene Intersection</b>
-				<a href="/ia"></a>
+				<b>Markers Gene Set Intersection Finder</b>
+				<a href="/ia"></a><br>
 				<img src="/images/venn.png"/>
 		</div>
 		
 		<div class="col-xs-4 tool">
 				<b>Disk Image Treemap Viewer</b>
-				<a href="/tml"></a>
+				<a href="/tml"></a><br>
 				<img src="/images/d3-js-treemap.jpg"/>
+		</div>
+
+		<div class="col-xs-4 tool">
+				<b>Markers Lollipop Generator</b>
+				<a href="/lol"></a><br>
+				<img src="https://github.com/pbnjay/lollipops/raw/master/tp53.png?raw=true"/>
 		</div>
 
 		

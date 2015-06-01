@@ -10,72 +10,106 @@ var dataset = {};
 
 /* GET home page. */
 router.get('/', function(req, res) {
-res.render('index');
+    res.render('ia');
 });
 
 
 //load default
-router.post('/loadList',function(req,res){
-  var o = req.body.option;
+router.post('/loadList', function(req, res) {
 
-  console.log(o);
-  console.log('a');
-  
-  db.open(function(err,db1){
+    console.log('a');
 
-    if(err){
-      console.log("connection failed");
-    }
+    db.open(function(err, db1) {
 
-    else{
+        if (err) {
+            console.log("oops");
+            db.close();
+        } else {
 
-    console.log('b');
-  	db1.collection('files',function(err,files){
-        
+            console.log('b');
+            var o = req.body.option;
 
-        files.aggregate([
+            db1.collection('files', function(err, files) {
 
-          { $match: { 'collectionDb':o,insertsCount:{'$gte':1} } }, 
-          { $project: { projectRun:1,_id:0 } },
-          { $sort: {projectRun:1} },
-          { $group: {_id:null,projectRun:{$addToSet:"$projectRun"}}}
 
-        ], function(err, result) {    
+                files.aggregate([
 
-          db1.close();
-          console.log(result[0].projectRun);
-          res.json(result[0].projectRun);
+                    {
+                        $match: {
+                            'collectionDb': o,
+                            insertsCount: {
+                                '$gte': 1
+                            }
+                        }
+                    }, {
+                        $project: {
+                            projectRun: 1,
+                            _id: 0
+                        }
+                    }, {
+                        $sort: {
+                            projectRun: 1
+                        }
+                    }, {
+                        $group: {
+                            _id: null,
+                            projectRun: {
+                                $addToSet: "$projectRun"
+                            }
+                        }
+                    }
 
-        }); //end aggregate
+                ], function(err, result) {
+
+
+                    if (result.length > 0 && result[0].projectRun) {
+                        db1.close();
+                        console.log(result[0].projectRun);
+                        res.json(result[0].projectRun);
+                    }
+
+                }); //end aggregate
+
+
+
+            });
+
+
+        }
+
+
+
+
     });
-
-
-    }
-
-  });
 });
 
 
-router.get('/loadDb',function(req,res,next){
-  console.log('c');
 
-  db.open(function(err,db2){
+router.get('/loadDb', function(req, res, next) {
+    console.log('c');
 
-    if(err){
-      console.log("connection failed");
-    }
+    db.open(function(err, db2) {
 
-    else{
-      console.log('d');
-      db2.collectionNames(function(err,names){
-        db2.close();
+        if (err) {
+            console.log("oops");
+            db.close();
+        } else {
 
-        res.json(names);
-      });
+            console.log('d');
 
-    }
+            db2.listCollections({name:{$in:['germline','tumor']} }).toArray(function(err, names) {
+                
+                if(!err){
+                    res.json(names);
+                }
+                db2.close();
+            });
 
-  });
+        }
+
+
+
+    });
 });
 
 
@@ -86,39 +120,50 @@ Passes the users selection
  as well as samples and passes to intersection algorithm
 */
 
-router.post('/',function(req,res,next){
+router.post('/', function(req, res, next) {
 
-var data = {
-user_selection:req.body.key,
-s1: req.body.s1,
-s2: req.body.s2,
-s3: req.body.s3,
-s4: req.body.s4,
-u_db: req.body.u_db
-};
+    var data = {
+        user_selection: req.body.key,
+        s1: req.body.s1,
+        s2: req.body.s2,
+        s3: req.body.s3,
+        s4: req.body.s4,
+        u_db: req.body.u_db
+    };
 
-console.log(data);
+    if (data.u_db) {
 
-var myIntersection = intersection(data.user_selection,data.s1,data.s2,data.s3,data.s4,data.u_db);
+        console.log(data);
 
-myIntersection.aggregateF(
+        var myIntersection = intersection(data.user_selection, data.s1, data.s2, data.s3, data.s4, data.u_db);
 
-//callback function called from intersection.js
+        myIntersection.aggregateF(
 
-  function(){
-	dataset=myIntersection.vals();
+            //callback function called from intersection.js
+
+            function() {
+                dataset = myIntersection.vals();
 
 
-	if(!dataset){
-    console.log("error returning dataset");
-		res.json({error:1})
-	}
-	else if(dataset){
-    console.log("working");
-		res.json(dataset);
-	}
+                if (!dataset) {
+                    console.log("error returning dataset");
+                    res.json({
+                        error: 1
+                    });
+                } else if (dataset) {
+                    console.log("working");
+                    res.json(dataset);
+                }
 
-});
+            });
+
+    }
+    else{
+        console.log("error returning dataset");
+                    res.json({
+                        error: 1
+                    });
+    }
 
 });
 

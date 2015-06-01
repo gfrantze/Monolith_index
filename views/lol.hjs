@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/chosen.min.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel='stylesheet' href="/stylesheets/lollipopInterface.css" />
+
+  </head>
+  <body>
+    
+  <div class="container-fluid">
+
+    <h1 id="aaa"></h1>
+    <div class="spinner"></div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+      <div class="format">
+        <h2> pick projectRun </h2>
+        <select id="prs" onchange="findGenes()"> 
+          <option disabled selected> -- select a projectRun -- </option>
+           {{#dist_prs}}<option>   {{.}}  </option>{{/dist_prs}}
+        </select>
+      </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+
+      <div class="col-xs-12">
+
+        <div id="tog">
+        <div class="format">
+          <h2> pick gene </h2>
+
+          <select id="genes" onchange="geneSelected()"> 
+            <option disabled selected> -- select a gene -- </option>  
+          </select>
+        </div>
+        </div>
+
+      </div>  
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+            <div id="mysvg"></div>
+      </div>
+    </div>
+
+
+
+    </div>
+
+
+<div id="scroller">
+  <img style="float:left;" id="left-button" src="http://upload.wikimedia.org/wikipedia/commons/1/18/Left_arrow.svg"/>
+  <img style="float:right;" id="right-button" src="http://upload.wikimedia.org/wikipedia/commons/1/12/Right_arrow.svg"/>
+</div>
+
+  </div>
+
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/chosen.jquery.min.js"></script> 
+<script src="/javascripts/lollipopInterface.js"></script>
+
+
+  </body>
+
+ 
+</html>

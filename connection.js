@@ -18,6 +18,6 @@ Establish connection to DB.
 */
 
 module.exports = {
-    db: new Db('markers', new Server('leeloo.tgen.org', 27059),{safe:true}),
+    db: new Db('markers', new Server('it5355.ad.tgen.org', 27017),{safe:true}),
     _db2: new Db('ngstools', new Server('walle.tgen.org', 27030),{safe:true})
 };

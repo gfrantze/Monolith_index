@@ -260,7 +260,11 @@
 </div>
 </div>
 
-<button type="button" onclick="prep_export()">Export to CSV</button>
+<button type="button" onclick="prep_export()">Save gene lists as .tsv</button>
+<button id="save">Save Venn as .png</button>
+<div id="svgdataurl"></div>
+<div id="pngdataurl"></div>
+<canvas width="960" height="500" style="display:none"></canvas>
 
 
 

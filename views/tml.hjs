@@ -48,6 +48,9 @@
                         <option value='su2c'>/su2c</option>
                         <option value='ngddata'>/ngd-data</option>
                         <option value='carpten'>/carpten</option>
+                        <option value='trent'>/trent</option>
+                        <option value='MMRF'>/MMRF</option>
+                        <option value='keats'>/keats</option>
 
                     </select>
                     <input type='submit' value="Switch Image" class="btn btn-primary" onclick="newImg()" />
