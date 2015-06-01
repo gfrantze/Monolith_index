@@ -20,7 +20,7 @@
       <div class="col-xs-12">
 
       <div class="format">
-        <h2> pick projectRun </h2>
+        <h2> pick a projectRun </h2>
         <select id="prs" onchange="findGenes()"> 
           <option disabled selected> -- select a projectRun -- </option>
            {{#dist_prs}}<option>   {{.}}  </option>{{/dist_prs}}
