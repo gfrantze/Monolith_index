@@ -7,6 +7,8 @@ var intersection = require('../intersection');
 user_selection = "";
 var dataset = {};
 
+var mutex = false;
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -17,9 +19,13 @@ router.get('/', function(req, res) {
 //load default
 router.post('/loadList', function(req, res) {
 
+
+
     console.log('a');
 
     db.open(function(err, db1) {
+
+        mutex = true; 
 
         if (err) {
             console.log("oops");
@@ -62,25 +68,20 @@ router.post('/loadList', function(req, res) {
                 ], function(err, result) {
 
 
-                    if (result.length > 0 && result[0].projectRun) {
+                    if (result && result.length > 0 && result[0].projectRun) {
                         db1.close();
                         console.log(result[0].projectRun);
                         res.json(result[0].projectRun);
                     }
 
                 }); //end aggregate
-
-
-
             });
-
-
         }
-
-
-
-
     });
+
+
+
+
 });
 
 
