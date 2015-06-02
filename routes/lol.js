@@ -229,7 +229,7 @@ router.get("/LOLLIPOP", function(req, res, next) {
 
         var clearSVG = function() {
             var exec = require('child_process').exec;
-            exec('ls -Art | tail -n 1 | xargs rm', function(error, stdout, stderr) {console.log("remove successful"); });
+            exec('ls -Art | tail -n 1 | grep *.svg | xargs rm', function(error, stdout, stderr) {console.log("remove successful"); });
 
         }
 
