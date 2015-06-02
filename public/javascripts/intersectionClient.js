@@ -489,7 +489,6 @@ function prep_export() {
      };
 
 
-    }
 
     for (var i = 0; i < ids.length; i++) {
 
