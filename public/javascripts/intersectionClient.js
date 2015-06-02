@@ -468,29 +468,51 @@ function prep_export() {
     var ids = ["#cA", "#cB", "#cC", "#cD", "#cAB", "#cAC", "#cAD", "#cBC", "#cBD", "#cCD", "#cABC", "#cABD", "#cACD", "#cBCD", "#cABCD"];
 
     var csvContent = "data:text/tab-separated-values;charset=utf-8,";
+    var longest = 0;
 
+    var dataMap = {
+        "#ca" : [],
+        "#cB" : [],
+        "#cC" : [],
+        "#cD" : [],
+        "#cAB" : [],
+        "#cAC" : [],
+        "#cAD" : [],
+        "#cBC" : [],
+        "#cBD" : [],
+        "#cCD" : [],
+        "#cABC" : [],
+        "#cABD" : [],
+        "#cACD" : [],
+        "#cBCD" : [],
+        "#cABCD" : []
+     };
+
+
+    }
 
     for (var i = 0; i < ids.length; i++) {
 
         csvContent += $(ids[i]).attr('id') + "\t";
 
-    }
+        
+        dataMap[ids[i]] = $(ids[i]).find('p').text().split(",");
+        var bid = dataMap[ids[i]].length;
 
-    csvContent += "\n";
-    var longest = 0;
-
-    for (var i = 0; i < ids.length; i++) {
-        var bid = $(ids[i]).find('p').text().split(",").length;
         if (bid > longest) {
             longest = bid;
         }
+
     }
+
+    csvContent += "\n";
+    
 
 
     for (var j = 0; j < longest; j++) {
         for (var i = 0; i < ids.length; i++) {
 
-            var unit = $(ids[i]).find('p').text().split(",");
+            var unit = dataMap[ ids[i] ];
 
             if (unit[j]) {
                 csvContent += $.trim(unit[j]) + "\t";

@@ -22,3 +22,4 @@ patch notes v1.01:
 v1.02:
 
 -lollipop gene view generator is now study wide
+-fixed asterisk parse error

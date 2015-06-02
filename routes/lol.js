@@ -181,14 +181,21 @@ router.get("/LOLLIPOP", function(req, res, next) {
 
         var aminoString = "";
 
+
         aminoChange = [];
         for (item in docs) {
+
+            if(docs[item].snpeff.AminoAcidChange!="None"){
             aminoChange.push(docs[item].snpeff.AminoAcidChange);
+            }
+
         }
 
         for (item in aminoChange) {
             aminoString += aminoChange[item] + " ";
         }
+
+        aminoString = aminoString.replace(/\*/g, '');
 
 
         console.log("amino string is " + aminoString);
