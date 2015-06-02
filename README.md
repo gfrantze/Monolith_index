@@ -18,3 +18,7 @@ patch notes v1.01:
 -added lollipop gene viewer
 -implemented treemap updates (support for more images)
 -implemented IntersectionApp bug fixes
+
+v1.02:
+
+-lollipop gene view generator is now study wide
