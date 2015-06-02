@@ -52,6 +52,7 @@
             qy: $("#prs").val()
         };
 
+
         $.getJSON("/lol/genes", pr, function(data) {
 
             console.log(data);

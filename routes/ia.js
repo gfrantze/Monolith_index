@@ -7,7 +7,6 @@ var intersection = require('../intersection');
 user_selection = "";
 var dataset = {};
 
-var mutex = false;
 
 
 /* GET home page. */
@@ -20,23 +19,15 @@ router.get('/', function(req, res) {
 router.post('/loadList', function(req, res) {
 
 
-
-    console.log('a');
-
     db.open(function(err, db1) {
-
-        mutex = true; 
 
         if (err) {
             console.log("oops");
             db.close();
         } else {
 
-            console.log('b');
             var o = req.body.option;
-
             db1.collection('files', function(err, files) {
-
 
                 files.aggregate([
 
@@ -67,7 +58,6 @@ router.post('/loadList', function(req, res) {
 
                 ], function(err, result) {
 
-
                     if (result && result.length > 0 && result[0].projectRun) {
                         db1.close();
                         console.log(result[0].projectRun);
@@ -80,35 +70,31 @@ router.post('/loadList', function(req, res) {
     });
 
 
-
-
 });
 
 
 
 router.get('/loadDb', function(req, res, next) {
-    console.log('c');
 
     db.open(function(err, db2) {
 
         if (err) {
-            console.log("oops");
+            console.log("error");
             db.close();
         } else {
 
-            console.log('d');
-
             db2.listCollections({name:{$in:['germline','tumor']} }).toArray(function(err, names) {
-                
+                console.log(names);
+                console.log("a");
+
                 if(!err){
+                    console.log("k");
                     res.json(names);
                 }
                 db2.close();
             });
 
         }
-
-
 
     });
 });

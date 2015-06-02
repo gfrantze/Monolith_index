@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
             var col = db1.collection('tumor');
             var pr_col = db1.collection('projectRun')
 
-            pr_col.distinct('projectRun', {
+            pr_col.distinct('study', {'status':1},{
                 status: 1
             }, function(err, dist) {
 
@@ -69,7 +69,7 @@ router.get('/genes', function(req, res, next) {
 
             col.aggregate([{
                     $match: {
-                        "variants.projectRun": queryObj.qy,
+                        "variants.study": queryObj.qy,
                         "impact": "significant",
                         "snpeff": {
                             $gt: {}
@@ -139,7 +139,7 @@ router.get("/LOLLIPOP", function(req, res, next) {
 
             col.aggregate([{
                     $match: {
-                        "variants.projectRun": queryObj.qy,
+                        "variants.study": queryObj.qy,
                         "gene": queryObj.qy2,
                         "impact": "significant",
                         "snpeff": {
@@ -221,9 +221,19 @@ router.get("/LOLLIPOP", function(req, res, next) {
                     "svg": stdout
                 };
                 res.json(mysvg);
+                clearSVG();
             });
 
         }
+
+
+        var clearSVG = function() {
+            var exec = require('child_process').exec;
+            exec('ls -Art | tail -n 1 | xargs rm', function(error, stdout, stderr) {console.log("remove successful"); });
+
+        }
+
+
 
 
     }
