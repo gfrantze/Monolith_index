@@ -66,11 +66,12 @@ module.exports = function(user_in, s1, s2, s3, s4, u_db) {
                                                 "projectRun": s1
                                             }, function(err, docs1) {
 
-                                                if (!err && docs1.length > 0) {
+                                                if (!err && docs1 && docs1.length > 0) {
                                                     GLOBAL_INTERSECTION.a = docs1.length;
                                                     GLOBAL_INTERSECTION.origA = docs1;
+                                                    console.log(docs1.length);
                                                 }
-                                                console.log(docs1.length);
+                                                
 
 
                                                 /*******************************************************************
@@ -79,11 +80,12 @@ module.exports = function(user_in, s1, s2, s3, s4, u_db) {
                                                     "projectRun": s2
                                                 }, function(err, docs2) {
 
-                                                    if (!err && docs2.length > 0) {
+                                                    if (!err && docs2 && docs2.length > 0) {
                                                         GLOBAL_INTERSECTION.b = docs2.length;
                                                         GLOBAL_INTERSECTION.origB = docs2;
+                                                        console.log(docs2.length);
                                                     }
-                                                    console.log(docs2.length);
+                                                    
 
                                                     /*******************************************************************
                                                                             DISTINCT IN C                            */
@@ -91,26 +93,24 @@ module.exports = function(user_in, s1, s2, s3, s4, u_db) {
                                                         "projectRun": s3
                                                     }, function(err, docs3) {
 
-                                                        if (!err && docs3.length > 0) {
+                                                        if (!err && docs3 && docs3.length > 0) {
                                                             GLOBAL_INTERSECTION.c = docs3.length;
                                                             GLOBAL_INTERSECTION.origC = docs3;
+                                                             console.log(docs3.length);
                                                         }
 
-                                                        console.log(docs3.length);
+                                                       
 
 
                                                         coll_udb.distinct(user_selection, {
                                                             "projectRun": s4
                                                         }, function(err, docs4) {
 
-                                                            if (!err && docs4.length > 0) {
+                                                            if (!err && docs4 && docs4.length > 0) {
                                                                 GLOBAL_INTERSECTION.d = docs4.length;
                                                                 GLOBAL_INTERSECTION.origD = docs4;
+                                                                console.log(docs4.length);
                                                             }
-
-
-
-                                                            console.log(docs4.length);
 
 
 

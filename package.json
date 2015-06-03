@@ -10,6 +10,7 @@
     "debug": "*",
     "express": "^5.0.0-alpha.1",
     "hjs": "*",
+    "lodash": "^3.9.3",
     "mongodb": "^2.1.0-alpha",
     "morgan": "*",
     "querystring": "*",
