@@ -1,6 +1,6 @@
 body {
 padding: 50px;
-font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+font-family: "helvetica";
 }
 
 a {
@@ -20,6 +20,11 @@ width:100%;
 margin-top:32px;
 width:4%; 
 height: auto;
+}
+
+img:hover {
+	opacity: 0.5;
+	cursor: pointer;
 }
 
 .spinner {

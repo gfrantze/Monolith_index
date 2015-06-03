@@ -20,11 +20,33 @@
       <div class="col-xs-12">
 
       <div class="format">
-        <h2> pick a study </h2>
-        <select id="prs" onchange="findGenes()"> 
+        <h5> pick a study, or switch to projectRun: </h5>
+      
+      <form>
+        <input type="radio" name="up" value="study" checked> Study
+        <input type="radio" name="up" value="projectRun"> ProjectRun<br><br>
+      </form>
+      
+      <div id= "aa">
+        <select class="chosen-select" id="prs" onchange="findGenes()"> 
           <option disabled selected> -- select a study -- </option>
            {{#dist_prs}}<option>   {{.}}  </option>{{/dist_prs}}
         </select>
+
+      </div>
+
+      <div id = "bb">
+
+        <select multiple class="chosen-select" id="__prs" data-placeholder="Choose one or several projectRuns"> 
+           {{#__dist_prs}}<option>   {{.}}  </option>{{/__dist_prs}}
+        </select> <br><br>
+
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default btn-sm" onclick="findGenes(1)">Get Lollipops</button>
+        </div>
+
+      </div>
+      
       </div>
 
       </div>
@@ -38,7 +60,7 @@
 
         <div id="tog">
         <div class="format">
-          <h2> pick gene </h2>
+          <h5> pick gene </h5>
 
           <select id="genes" onchange="geneSelected()"> 
             <option disabled selected> -- select a gene -- </option>  
