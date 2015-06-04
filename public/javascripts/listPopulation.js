@@ -23,6 +23,7 @@ function populateSampleList(data) {
 
     data = data.sort();
 
+
     $.each(data, function(key, value) {
         $('#zz')
             .append($("<option></option>")
@@ -30,6 +31,7 @@ function populateSampleList(data) {
                 .on("click", addToList)
                 .text(value));
     });
+    
 
     $("#loading").hide();
 

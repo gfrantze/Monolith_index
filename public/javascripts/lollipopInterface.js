@@ -17,10 +17,17 @@
             $("#__prs").chosen({
                 width: "25%"
             });
+            $("#prs").val('-- select a study --').trigger("chosen:updated");
+            $("#genes").val('-- select a gene --').trigger("chosen:updated");
+
+
+
         }
         if ( this.value == 'study') {
             $("#bb").hide();
             $("#aa").show();
+            $("#genes").val('-- select a gene --').trigger("chosen:updated");
+            
         }
         
     });

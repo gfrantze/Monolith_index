@@ -22,17 +22,11 @@ router.get('/', function(req, res, next) {
 
             console.log("connected");
             var col = db1.collection('tumor');
-            var pr_col = db1.collection('projectRun')
+            var pr_col = db1.collection('projectRun');
 
-            pr_col.distinct('study', {'status':1},{
-                status: 1
-            }, function(err, dist) {
+            pr_col.distinct('study', {'status':1}, function(err, dist) {
 
-
-
-                pr_col.distinct('projectRun', {'status':1},{
-                status: 1
-                }, function(err, dist2) {
+                pr_col.distinct('projectRun', {'status':1}, function(err, dist2) {
 
                     console.log(dist2);
                     res.render('lol', {
@@ -69,7 +63,10 @@ router.get('/', function(req, res, next) {
 var RunQueryS = function(queryObj, ok){
 
 
-console.log(queryObj);
+var reset = queryObj.toString();
+var r = [reset];
+
+console.log("reset is "+ reset);
 
 db.open(function(err, db1) {
 
@@ -79,22 +76,52 @@ db.open(function(err, db1) {
         } else {
 
             console.log("connected");
-            var pr_col = db1.collection('projectRun')
+            var pr_col = db1.collection('projectRun');
             var col = db1.collection('tumor');
 
             console.log("ok");
 
 
-            col.find({"variants.study":queryObj.toString(),"impact":"significant","snpeff":{$gt:{}}},{"gene":1,"_id":0}).toArray(function(err, docs) {
+            col.aggregate([
+
+                    {
+                    $match: {
+                        "variants.study": {$in : r},
+                        "impact": "significant",
+                        "snpeff": {
+                            $gt: {}
+                        }
+                    }},
+
+
+                    
+                    {
+                    $project: {
+                        "gene": 1,
+                        "_id": 0
+                    }
+                    },
+
+                    { $group : { _id : "$gene" } },
+
+
+
+                    {$sort: {
+                        "_id" : 1
+                    }
+
+                    }
+
+
+            ]).toArray(function(err, docs) {
                     console.log(docs);
                     db.close();
 
-                    docs = _.sortBy(docs,"gene");
                     var uniq_genes = [];
                     for (item in docs) {
-                        uniq_genes.push(docs[item].gene);
+                        uniq_genes.push(docs[item]._id);
                     }
-                    ok( _.uniq(uniq_genes) );
+                    ok( uniq_genes );
 
                     
             });
@@ -145,10 +172,13 @@ var RunQuery= function(queryObj, ok){
                         "_id": 0
                     }
                 },
+
+                { $group : { _id : "$gene" } },
+
                 {
 
                 $sort: {
-                    "gene" : 1
+                    "_id" : 1
                 }
 
                 }
@@ -162,9 +192,9 @@ var RunQuery= function(queryObj, ok){
 
                     var uniq_genes = [];
                     for (item in docs) {
-                        uniq_genes.push(docs[item].gene);
+                        uniq_genes.push(docs[item]._id);
                     }
-                    ok( _.uniq(uniq_genes) );
+                    ok( uniq_genes );
 
                     
                 });

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../connection').db;
 var intersection = require('../intersection');
+var _ = require("lodash");
 
 
 user_selection = "";
@@ -44,10 +45,6 @@ router.post('/loadList', function(req, res) {
                             _id: 0
                         }
                     }, {
-                        $sort: {
-                            projectRun: 1
-                        }
-                    }, {
                         $group: {
                             _id: null,
                             projectRun: {
@@ -58,11 +55,30 @@ router.post('/loadList', function(req, res) {
 
                 ], function(err, result) {
 
-                    if (result && result.length > 0 && result[0].projectRun) {
-                        db1.close();
-                        console.log(result[0].projectRun);
-                        res.json(result[0].projectRun);
-                    }
+
+
+                    var col = db1.collection('tumor');
+
+
+                    col.distinct('projectRun', {projectRun:{$in:result[0].projectRun}}, function(err,dist){
+
+                       /* if (result && result.length > 0 && result[0]) {
+                            db1.close();
+                            var sorted = [];
+                            for (var i = 0; i < result[0].projectRun.length; i++) {
+                                sorted.push(result[0].projectRun[i].toLowerCase());
+                            }
+                            sorted.sort();
+                            console.log(sorted);
+                            res.json(   sorted    );
+                        }*/
+
+                        res.json(dist);
+
+
+                    });
+
+                    
 
                 }); //end aggregate
             });
@@ -83,7 +99,7 @@ router.get('/loadDb', function(req, res, next) {
             db.close();
         } else {
 
-            db2.listCollections({name:{$in:['germline','tumor']} }).toArray(function(err, names) {
+            db2.listCollections({name:{$in:['tumor']} }).toArray(function(err, names) {
                 console.log(names);
                 console.log("a");
 

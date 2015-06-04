@@ -731,9 +731,12 @@ Also initialize accordion.
 
 function init() {
 
+
     getDBs();
     from_csv();
     drawDefault();
+
+
     $("#load_icon").hide();
 
     $("#accordion").accordion({
