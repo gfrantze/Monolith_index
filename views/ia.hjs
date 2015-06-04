@@ -5,7 +5,7 @@
         <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-    <link rel='stylesheet' href='/stylesheets/chosen.min.css' />
+
 
   </head>
 
@@ -290,8 +290,6 @@
 <script src="/javascripts/venn.js"></script>
 <script src="/javascripts/listPopulation.js"></script>
 <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
-<script src="/javascripts/chosen.jquery.min.js"></script> 
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="/javascripts/intersectionClient.js"></script>

@@ -5,7 +5,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel='stylesheet' href="/stylesheets/lollipopInterface.css" />
-
+    <link rel='stylesheet' href='/stylesheets/chosen.min.css' />
+    
   </head>
   <body>
     
@@ -91,6 +92,7 @@
   </div>
 
 <script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/chosen.jquery.min.js"></script> 
 <script src="/javascripts/lollipopInterface.js"></script>
 
 
