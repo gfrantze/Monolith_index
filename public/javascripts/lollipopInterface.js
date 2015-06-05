@@ -172,6 +172,8 @@
 
         if (flag) {
 
+            $('#genes2').empty();
+
             $(".spinner").show();
             //$('#genes').empty();
 
