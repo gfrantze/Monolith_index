@@ -1,13 +1,15 @@
-    
-var GLOBAL_TOGGLE_FLAG = 0;
+    var GLOBAL_TOGGLE_FLAG = 0;
 
 
     $("#bb").hide();
     $("#prs").chosen({
         width: "25%"
     });
-    
+
     $("#genes").chosen({
+        width: "25%"
+    });
+    $("#genes2").chosen({
         width: "25%"
     });
     $(".spinner").hide();
@@ -17,43 +19,49 @@ var GLOBAL_TOGGLE_FLAG = 0;
 
 
 
-$(document).ready(function() { 
+    $(document).ready(function() {
 
-    $(".spinner").show();
-
-    $.getJSON("genes.json", function(data) {
-
-        
-        $.each(data.response.docs, function(index, val) {
-
-            console.log(val);
-
-            $('#genes')
-                .append($("<option></option>")
-                    .attr("value", val.symbol)
-                    .text(val.symbol));
-
-        });
-
-        $(".spinner").hide();
-        //    $("#tog").show();
-
-        $("#genes").trigger("chosen:updated");
-
+        res();
+        $("#g2").hide();
 
     });
 
-});
+
+    var res = function() {
+
+        $(".spinner").show();
+
+        $.getJSON("genes.json", function(data) {
 
 
+            $.each(data.response.docs, function(index, val) {
 
+                console.log(val);
+
+                $('#genes')
+                    .append($("<option></option>")
+                        .attr("value", val.symbol)
+                        .text(val.symbol));
+
+            });
+
+            $(".spinner").hide();
+            //    $("#tog").show();
+
+            $("#genes").trigger("chosen:updated");
+
+
+        });
+    }
 
 
     $('input[type=radio][name=up]').change(function() {
         $("#mysvg").empty();
         $("#aaa").empty();
         if (this.value == 'projectRun') {
-            GLOBAL_TOGGLE_FLAG=1;
+            $("#g2").show();
+            $("#g").hide();
+            GLOBAL_TOGGLE_FLAG = 1;
             $("#aa").hide();
             $("#bb").show();
             $("#__prs").chosen({
@@ -65,14 +73,16 @@ $(document).ready(function() {
 
 
         }
-        if ( this.value == 'study') {
-            GLOBAL_TOGGLE_FLAG=0;
+        if (this.value == 'study') {
+            GLOBAL_TOGGLE_FLAG = 0;
+            $("#g2").hide();
+            $("#g").show();
             $("#bb").hide();
             $("#aa").show();
             $("#genes").val('-- select a gene --').trigger("chosen:updated");
-            
+
         }
-        
+
     });
 
 
@@ -81,7 +91,7 @@ $(document).ready(function() {
         var totalwidth = $('#mysvg').find("svg").attr("width");
         event.preventDefault();
 
-        if ($('#mysvg').css('marginLeft').replace(/[^-\d\.]/g, '') > -(totalwidth - 600)) {
+        if ($('#mysvg').css('marginLeft').replace(/[^-\d\.]/g, '') > -(totalwidth)) {
 
             $('#mysvg').animate({
 
@@ -116,58 +126,60 @@ $(document).ready(function() {
         $("#aaa").empty();
         $("#genes").val('-- select a gene --').trigger("chosen:updated");
 
-/*
-        $("#mysvg").empty();
-        $("#aaa").empty();
-        $(".spinner").show();
-        $('#genes').empty();
+        /*
+                $("#mysvg").empty();
+                $("#aaa").empty();
+                $(".spinner").show();
+                $('#genes').empty();
 
 
-        if(!flag){
+                if(!flag){
 
-            var q = { qy: $("#prs").val().toString() };
-        
-            $.getJSON("/lol/genes", q, function(data) {
-
-
-                $('#genes').append($("<option disabled selected> -- select a gene -- </option>  "));
-                $.each(data, function(index, val) {
-
-                    $('#genes')
-                        .append($("<option></option>")
-                            .attr("value", val._id)
-                            .text(val._id));
-
-                });
-
-                $(".spinner").hide();
-                //    $("#tog").show();
-
-                $("#genes").trigger("chosen:updated");
+                    var q = { qy: $("#prs").val().toString() };
+                
+                    $.getJSON("/lol/genes", q, function(data) {
 
 
-            });
+                        $('#genes').append($("<option disabled selected> -- select a gene -- </option>  "));
+                        $.each(data, function(index, val) {
 
-        }
+                            $('#genes')
+                                .append($("<option></option>")
+                                    .attr("value", val._id)
+                                    .text(val._id));
 
-        */
+                        });
+
+                        $(".spinner").hide();
+                        //    $("#tog").show();
+
+                        $("#genes").trigger("chosen:updated");
 
 
+                    });
 
+                }
+
+                */
 
 
 
 
 
 
-        if(flag){
+
+
+
+        if (flag) {
 
             $(".spinner").show();
-            $('#genes').empty();
+            //$('#genes').empty();
 
-            var q = { qy: $("#__prs").val().toString() };
+            var q = {
+                qy: $("#__prs").val().toString()
+            };
 
-            if ( $("#__prs").val().length > 0 ) {
+            if ($("#__prs").val().length > 0) {
 
                 console.log(q);
 
@@ -175,10 +187,10 @@ $(document).ready(function() {
 
                     console.log(data);
 
-                    $('#genes').append($("<option disabled selected> -- select a gene -- </option>  "));
+                    $('#genes2').append($("<option disabled selected> -- select a gene -- </option>  "));
                     $.each(data, function(index, val) {
 
-                        $('#genes')
+                        $('#genes2')
                             .append($("<option></option>")
                                 .attr("value", val)
                                 .text(val));
@@ -187,7 +199,7 @@ $(document).ready(function() {
 
                     $(".spinner").hide();
                     //    $("#tog").show();
-                    $("#genes").trigger("chosen:updated");
+                    $("#genes2").trigger("chosen:updated");
                 });
 
             }
@@ -206,69 +218,79 @@ $(document).ready(function() {
 
         var pr = {
             qy: "",
-            qy2: $("#genes").val(),
+            qy2: "",
             study_or_pr: ""
         };
 
+        if (!GLOBAL_TOGGLE_FLAG) {
 
-        if($("#bb").is(":visible")) {
-            pr['study_or_pr']="__pr";
+            pr.qy2 = $("#genes").val();
+
+        }
+
+        if (GLOBAL_TOGGLE_FLAG) {
+            pr.qy2 = $("#genes2").val()
+        }
+
+
+        if ($("#bb").is(":visible")) {
+            pr['study_or_pr'] = "__pr";
             pr['qy'] = $("#__prs").val().toString();
-        } else{
+        } else {
 
-            pr['study_or_pr']="__stud";
-            if($("#prs").val()){
+            pr['study_or_pr'] = "__stud";
+            if ($("#prs").val()) {
                 pr['qy'] = $("#prs").val().toString();
-            }
-            else{
+            } else {
                 pr['qy'] = "";
             }
         }
 
-            
+
         $.getJSON("/lol/LOLLIPOP", pr, function(data) {
 
             console.log(data);
 
             //    $("#tog").hide();
-            if(data.error){
+            if (data.error) {
 
                 $("#mysvg").append("lookup failed");
-            }
-
-            else{
+            } else {
 
 
-                if( !GLOBAL_TOGGLE_FLAG  ) {
-
-                    
+                if (!GLOBAL_TOGGLE_FLAG) {
 
 
-                        if($("#prs").val()){
 
-                            if(data.m==false){
-                                $("#mysvg").append("No mutation in this gene<br>");
-                                $("#mysvg").append(data.mysvg.svg);
-                            } 
-                            else
-                            {
-                                $("#mysvg").append(data.svg);
-                            }
 
-                        }
-                        else {
-                            $("#mysvg").append("Select study to add mutation data<br>");
-                            $("#mysvg").append(data.mysvg.svg);   
+                    if ($("#prs").val()) {
+
+                        if (data.m == false) {
+                            $("#mysvg").append("No mutation in this gene<br>");
+                            $("#mysvg").append(data.mysvg.svg);
+                        } else {
+                            $("#mysvg").append(data.svg);
                         }
 
-                        
-                    
+                    } else {
+                        $("#mysvg").append("Select study to add mutation data<br>");
+                        $("#mysvg").append(data.mysvg.svg);
+                    }
+
+
+
 
                 }
 
-                if( GLOBAL_TOGGLE_FLAG  ){
+                if (GLOBAL_TOGGLE_FLAG) {
 
-                    $("#mysvg").append(data.svg);
+                    if (data.m == false) {
+                        $("#mysvg").append("No mutation in this gene<br>");
+                        $("#mysvg").append(data.mysvg.svg);
+                    } else {
+
+                        $("#mysvg").append(data.svg);
+                    }
 
                 }
 
@@ -278,7 +300,7 @@ $(document).ready(function() {
 
 
 
-        
+
         $("#aaa").text(pr.qy2);
         $(".spinner").hide();
 

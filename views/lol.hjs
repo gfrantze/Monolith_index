@@ -62,9 +62,20 @@
         <div class="format">
           <h5> pick gene </h5>
 
+          <div id="g">
           <select id="genes" onchange="geneSelected()"> 
             <option disabled selected> -- select a gene -- </option>  
           </select>
+        </div>
+
+        <div id="g2">
+
+          <select id="genes2" onchange="geneSelected()"> 
+            <option disabled selected> -- select a gene -- </option>  
+          </select>
+
+        </div>
+
         </div>
         </div>
 

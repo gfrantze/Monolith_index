@@ -262,7 +262,7 @@ router.get('/genesPR', function(req, res, next) {
 
 var clearSVG = function() {
     var exec = require('child_process').exec;
-    exec('ls -Art | tail -n 1 | grep *.svg | xargs rm', function(error, stdout, stderr) {console.log("remove successful"); });
+    exec('rm *.svg', function(error, stdout, stderr) {console.log("remove successful"); });
 };
 
 
