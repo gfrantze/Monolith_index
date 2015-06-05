@@ -86,7 +86,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-            <div style="overflow-x:auto;" id="mysvg"></div>
+            <div id="mysvg"></div>
       </div>
     </div>
 
