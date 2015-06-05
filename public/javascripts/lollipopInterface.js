@@ -1,4 +1,8 @@
-     $("#bb").hide();
+    
+var GLOBAL_TOGGLE_FLAG = 0;
+
+
+    $("#bb").hide();
     $("#prs").chosen({
         width: "25%"
     });
@@ -10,8 +14,46 @@
 
     //  $("#tog").hide();
 
+
+
+
+$(document).ready(function() { 
+
+    $(".spinner").show();
+
+    $.getJSON("genes.json", function(data) {
+
+        
+        $.each(data.response.docs, function(index, val) {
+
+            console.log(val);
+
+            $('#genes')
+                .append($("<option></option>")
+                    .attr("value", val.symbol)
+                    .text(val.symbol));
+
+        });
+
+        $(".spinner").hide();
+        //    $("#tog").show();
+
+        $("#genes").trigger("chosen:updated");
+
+
+    });
+
+});
+
+
+
+
+
     $('input[type=radio][name=up]').change(function() {
+        $("#mysvg").empty();
+        $("#aaa").empty();
         if (this.value == 'projectRun') {
+            GLOBAL_TOGGLE_FLAG=1;
             $("#aa").hide();
             $("#bb").show();
             $("#__prs").chosen({
@@ -24,6 +66,7 @@
 
         }
         if ( this.value == 'study') {
+            GLOBAL_TOGGLE_FLAG=0;
             $("#bb").hide();
             $("#aa").show();
             $("#genes").val('-- select a gene --').trigger("chosen:updated");
@@ -68,14 +111,16 @@
 
     var findGenes = function(flag) {
 
+
+        $("#mysvg").empty();
+        $("#aaa").empty();
+        $("#genes").val('-- select a gene --').trigger("chosen:updated");
+
+/*
         $("#mysvg").empty();
         $("#aaa").empty();
         $(".spinner").show();
         $('#genes').empty();
-
-
-
-
 
 
         if(!flag){
@@ -90,8 +135,8 @@
 
                     $('#genes')
                         .append($("<option></option>")
-                            .attr("value", val)
-                            .text(val));
+                            .attr("value", val._id)
+                            .text(val._id));
 
                 });
 
@@ -105,7 +150,20 @@
 
         }
 
+        */
+
+
+
+
+
+
+
+
+
         if(flag){
+
+            $(".spinner").show();
+            $('#genes').empty();
 
             var q = { qy: $("#__prs").val().toString() };
 
@@ -157,8 +215,14 @@
             pr['study_or_pr']="__pr";
             pr['qy'] = $("#__prs").val().toString();
         } else{
+
             pr['study_or_pr']="__stud";
-            pr['qy'] = $("#prs").val().toString();
+            if($("#prs").val()){
+                pr['qy'] = $("#prs").val().toString();
+            }
+            else{
+                pr['qy'] = "";
+            }
         }
 
             
@@ -167,8 +231,48 @@
             console.log(data);
 
             //    $("#tog").hide();
-            $("#mysvg").append(data.svg);
-            console.log("test");
+            if(data.error){
+
+                $("#mysvg").append("lookup failed");
+            }
+
+            else{
+
+
+                if( !GLOBAL_TOGGLE_FLAG  ) {
+
+                    
+
+
+                        if($("#prs").val()){
+
+                            if(data.m==false){
+                                $("#mysvg").append("No mutation in this gene<br>");
+                                $("#mysvg").append(data.mysvg.svg);
+                            } 
+                            else
+                            {
+                                $("#mysvg").append(data.svg);
+                            }
+
+                        }
+                        else {
+                            $("#mysvg").append("Select study to add mutation data<br>");
+                            $("#mysvg").append(data.mysvg.svg);   
+                        }
+
+                        
+                    
+
+                }
+
+                if( GLOBAL_TOGGLE_FLAG  ){
+
+                    $("#mysvg").append(data.svg);
+
+                }
+
+            }
 
         });
 

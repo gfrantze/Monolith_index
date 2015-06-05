@@ -35,7 +35,6 @@ router.get('/', function(req, res, next) {
                     });
                      db.close();
 
-
                 });
 
 
@@ -66,6 +65,7 @@ var RunQueryS = function(queryObj, ok){
 var reset = queryObj.toString();
 var r = [reset];
 
+
 console.log("reset is "+ reset);
 
 db.open(function(err, db1) {
@@ -74,6 +74,8 @@ db.open(function(err, db1) {
         if (err) {
             console.log("connection issues");
         } else {
+
+        
 
             console.log("connected");
             var pr_col = db1.collection('projectRun');
@@ -86,7 +88,7 @@ db.open(function(err, db1) {
 
                     {
                     $match: {
-                        "variants.study": {$in : r},
+                        "variants.study": {$in:r},
                         "impact": "significant",
                         "snpeff": {
                             $gt: {}
@@ -114,14 +116,16 @@ db.open(function(err, db1) {
 
 
             ]).toArray(function(err, docs) {
-                    console.log(docs);
+                    //console.log(docs);
                     db.close();
 
+                    /*
                     var uniq_genes = [];
                     for (item in docs) {
                         uniq_genes.push(docs[item]._id);
                     }
-                    ok( uniq_genes );
+                    */
+                    ok( docs );
 
                     
             });
@@ -134,7 +138,7 @@ db.open(function(err, db1) {
     }); //db open
 
 
-}
+};
 
 
 
@@ -208,24 +212,23 @@ var RunQuery= function(queryObj, ok){
 
 
 
-}
-
+};
 
 
 
 router.get('/genes', function(req, res, next) {
 
+/*
     var queryObj = "";
     queryObj = req.query.qy;
-    queryObj = queryObj.toString();
-
+    //queryObj = queryObj.toString();
+*/
 
     var ok = function(r_js) {
         res.json(r_js);
     }
 
-    console.log(queryObj);
-    RunQueryS(queryObj, ok);
+    RunQueryS(req.query.qy, ok);
 
 });
 
@@ -260,7 +263,7 @@ router.get('/genesPR', function(req, res, next) {
 var clearSVG = function() {
     var exec = require('child_process').exec;
     exec('ls -Art | tail -n 1 | grep *.svg | xargs rm', function(error, stdout, stderr) {console.log("remove successful"); });
-}
+};
 
 
 
@@ -276,11 +279,17 @@ var runSVG = function(acc, ok, aminoString) {
         var mysvg = {
             "svg": stdout
         };
+
+        if(aminoString==""){
+            ok({"m":false,"mysvg":mysvg})
+        }
+        else{
         ok(mysvg);
+        }
         clearSVG();
     });
 
-}
+};
 
 
 
@@ -331,13 +340,16 @@ var generatePop = function(docs, ok, queryObj) {
             console.log(body.split("\n")[1].split("\t")[0]);
             runSVG(acc, ok, aminoString);
         }
+        else {
+            ok({"error":1})
+        }
 
     })
 
 
 
 
-}
+};
 
 
 
@@ -441,14 +453,7 @@ var popQuery = function(queryObj, ok){
 
 
 
-}
-
-
-
-
-
-
-
+};
 
 
 
