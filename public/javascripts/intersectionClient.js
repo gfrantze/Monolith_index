@@ -294,13 +294,13 @@ function intersect(a, b) {
 }
 
 
+
 Array.prototype.unique = function() {
-    var a = [],
-        l = this.length;
-    for (var i = 0; i < l; i++) {
-        for (var j = i + 1; j < l; j++)
+    var a = [], l = this.length;
+    for(var i=0; i<l; i++) {
+      for(var j=i+1; j<l; j++)
             if (this[i] === this[j]) j = ++i;
-        a.push(this[i]);
+      a.push(this[i]);
     }
     return a;
 };
@@ -466,67 +466,18 @@ function prep_export() {
 
 
     var ids = ["#cA", "#cB", "#cC", "#cD", "#cAB", "#cAC", "#cAD", "#cBC", "#cBD", "#cCD", "#cABC", "#cABD", "#cACD", "#cBCD", "#cABCD"];
-
-    var csvContent = "data:text/tab-separated-values;charset=utf-8,";
-    var longest = 0;
-
-    var dataMap = {
-        "#ca" : [],
-        "#cB" : [],
-        "#cC" : [],
-        "#cD" : [],
-        "#cAB" : [],
-        "#cAC" : [],
-        "#cAD" : [],
-        "#cBC" : [],
-        "#cBD" : [],
-        "#cCD" : [],
-        "#cABC" : [],
-        "#cABD" : [],
-        "#cACD" : [],
-        "#cBCD" : [],
-        "#cABCD" : []
-     };
+    var csvContent = "data:text/csv;charset=utf-8,";
 
 
+    for(var i=0;i<ids.length;i++){
 
-    for (var i = 0; i < ids.length; i++) {
-
-        csvContent += $(ids[i]).attr('id') + "\t";
-
-        
-        dataMap[ids[i]] = $(ids[i]).find('p').text().split(",");
-        var bid = dataMap[ids[i]].length;
-
-        if (bid > longest) {
-            longest = bid;
-        }
-
+       var unit =  $(ids[i]).find('p').text();
+       var press = ids[i] + "," + unit;
+       csvContent += press+ "\n";
     }
 
-    csvContent += "\n";
-    
-
-
-    for (var j = 0; j < longest; j++) {
-        for (var i = 0; i < ids.length; i++) {
-
-            var unit = dataMap[ ids[i] ];
-
-            if (unit[j]) {
-                csvContent += $.trim(unit[j]) + "\t";
-            } else {
-                csvContent += "\t";
-            }
-        }
-        csvContent += "\n";
-    }
-
-
-
-    console.log(csvContent);
-    var encodedUri = encodeURI(csvContent, 'genelist.tsv');
-    window.open(encodedUri);
+        var encodedUri = encodeURI(csvContent);
+        window.open(encodedUri);
 
 
 
@@ -549,7 +500,14 @@ $('#somebutton').click(function() {
 
     //don't let the user spam ajax requests
     if (ajaxInProg) {
-        alert("warning,algorithm is working")
+
+        if( $("#zz").val() && $("#zz").val()>0  ){
+            alert("warning,algorithm is working")
+        }
+        else{
+            alert("no samples picked")
+
+        }
     } else {
 
         var sample1 = "",
@@ -562,12 +520,22 @@ $('#somebutton').click(function() {
         var e = document.getElementById("ddlViewBy");
         var strUser = e.options[e.selectedIndex].value;
 
-        var sampleSize = $("#chosen").find("p").length
+        var sampleSize = $("#zz").val().length;
 
-        sample1 = $("#chosen").find("p").eq(0).text().split(" ")[0];
-        sample2 = $("#chosen").find("p").eq(1).text().split(" ")[0];
-        sample3 = $("#chosen").find("p").eq(2).text().split(" ")[0];
-        sample4 = $("#chosen").find("p").eq(3).text().split(" ")[0];
+        var samples = $("#zz").val();
+
+        if(typeof samples[0] !== 'undefined'){
+            var sample1 = samples[0];
+        }
+        if(typeof samples[1] !== 'undefined'){
+            var sample2 = samples[1];
+        }
+        if(typeof samples[2] !== 'undefined'){
+            var sample3 = samples[2];
+        }
+        if(typeof samples[3] !== 'undefined'){
+            var sample4 = samples[3];
+        }
 
         var data = {
             "key": strUser,
@@ -582,71 +550,66 @@ $('#somebutton').click(function() {
 
         ajaxInProg = true;
 
-        if (data.u_db) {
+        if(data.u_db) {
 
 
-            $.ajax({
-                type: "POST",
-                url: "/ia/",
-                data: data,
-                timeout: 180000,
+        $.ajax({
+            type: "POST",
+            url: "/ia/",
+            data: data,
+            timeout: 180000,
 
-                success: function(res) {
+            success: function(res) {
 
-                    clearLists();
-
-
-                    if (res.error) {
-                        alert("error");
-                    } else {
+                clearLists();
 
 
-                        if (sampleSize == 2) {
+                if (res.error) {
+                    alert("error");
+                } else {
 
-                            if (res.origA && res.origB) {
-                                twoSetBoilerPlate(res);
-                            } else {
-                                nullcheck(data, res.origA, res.origB, 1, 1);
-                            }
-                        } else if (sampleSize == 3) {
 
-                            if (res.origA && res.origB && res.origC) {
-                                threeSetBoilerPlate(res);
-                            } else {
-                                nullcheck(data, res.origA, res.origB, res.origC, 1);
-                            }
-                        } else if (sampleSize == 4) {
+                    if (sampleSize == 2) {
 
-                            if (res.origA && res.origB && res.origC && res.origD) {
-                                fourSetBoilerPlate(res);
-                            } else {
-                                nullcheck(data, res.origA, res.origB, res.origC);
-                            }
+                        if (res.origA && res.origB) {
+                            twoSetBoilerPlate(res);
+                        } else {
+                            nullcheck(data, res.origA, res.origB, 1, 1);
                         }
+                    } else if (sampleSize == 3) {
 
+                        if (res.origA && res.origB && res.origC) {
+                            threeSetBoilerPlate(res);
+                        } else {
+                            nullcheck(data, res.origA, res.origB, res.origC, 1);
+                        }
+                    } else if (sampleSize == 4) {
+
+                        if (res.origA && res.origB && res.origC && res.origD) {
+                            fourSetBoilerPlate(res);
+                        } else {
+                            nullcheck(data, res.origA, res.origB, res.origC);
+                        }
                     }
 
-
-                    $("#load_icon").hide();
-                    ajaxInProg = false;
-                },
-
-                error: function(request, status, err) {
-                    if (status == "timeout") {
-                        alert("uhoh... looks like the server is a bit slow; the query timed out");
-                        $("#load_icon").hide();
-                        ajaxInProg = false;
-                    }
                 }
 
 
-            });
+                $("#load_icon").hide();
+                ajaxInProg = false;
+            },
+
+            error: function(request, status, err) {
+                if (status == "timeout") {
+                    alert("uhoh... looks like the server is a bit slow; the query timed out");
+                    $("#load_icon").hide();
+                    ajaxInProg = false;
+                }
+            }
 
 
-        } else{
+        });
 
-            alert("no connect ;|");
-            $("#load_icon").hide();
 
         }
 
@@ -729,14 +692,13 @@ Also initialize accordion.
 */
 
 
-function init() {
+$( document ).ready(function() {    
 
+$("#zz").chosen({max_selected_options: 4, width:"95%"}); 
 
     getDBs();
     from_csv();
     drawDefault();
-
-
     $("#load_icon").hide();
 
     $("#accordion").accordion({
@@ -746,7 +708,6 @@ function init() {
         navigation: true
     });
 
-}
+});
 
 
-window.onload = init;

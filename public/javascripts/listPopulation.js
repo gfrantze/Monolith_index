@@ -1,9 +1,17 @@
+
+
+
+
 //populate db selection
 
 function populateCollectionList(data) {
 
 
+
     for (var item in data) {
+
+        console.log(data[item]);
+
         if (data[item].name == "germline" || data[item].name == "tumor") {
             $('#selectDb')
                 .append($("<option></option>")
@@ -23,7 +31,6 @@ function populateSampleList(data) {
 
     data = data.sort();
 
-
     $.each(data, function(key, value) {
         $('#zz')
             .append($("<option></option>")
@@ -31,8 +38,10 @@ function populateSampleList(data) {
                 .on("click", addToList)
                 .text(value));
     });
-    
 
+
+
+    $("#zz").val('-- select projectRun --').trigger("chosen:updated");
     $("#loading").hide();
 
 }
@@ -44,7 +53,7 @@ function populateSampleList(data) {
 
 function getSampleList() {
 
-    $("#zz").empty();
+    //$("#zz").empty();
 
     $.post('/ia/loadList', {
         option: $("#selectDb option:selected").val()
@@ -57,7 +66,11 @@ function getSampleList() {
             $("#loading").text("timed out");
         }
 
-        populateSampleList(res);
+        else{
+            if(!res.error){
+                populateSampleList(res);
+            }
+        }
 
     });
 

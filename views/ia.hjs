@@ -5,7 +5,7 @@
         <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-
+    <link rel='stylesheet' href='/stylesheets/chosen.css' />
 
   </head>
 
@@ -89,12 +89,10 @@
 
         <div class="tab-pane fade" id="set2">
             <div class="db_select">
-              <p> Select DB: <select id="selectDb"></select> <button onclick="getSampleList()" class="btn btn-default btn-sm">Click Here To Get Samples</button></p>
+              <p> Select DB: <select id="selectDb" > </select> <button onclick="getSampleList()" class="btn btn-default btn-sm">Get Samples</button></p>
             </div>
-              <p id="loading"> loading... </p>
-              <select multiple class="form-control" id="zz">
-                <option disabled selected> -- select samples -- </option>  
-              </select>
+              <p id="loading"> error... </p>
+              <select multiple class="chosen-select" id="zz" data-placeholder="Choose up to 4 projectRuns"><option disabled selected> -- Get samples, then select a projectRun -- </option></select>
         </div>
 
 
@@ -115,11 +113,9 @@
 
 <div class="row text-center">
  
-<div id="in_db_tab" style="margin-top:4em;">
+<div id="in_db_tab" style="margin-top:12px;">
 
 
-
-<p> Samples You've Selected (up to four) : </p>
 
 <div id="chosen"></div>
 
@@ -271,8 +267,6 @@
 
 
 
-
-
 </div>
 
 </div>
@@ -286,14 +280,16 @@
 
 </body>
 
+
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="/javascripts/venn.js"></script>
-<script src="/javascripts/listPopulation.js"></script>
 <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="/javascripts/chosen.jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="/javascripts/intersectionClient.js"></script>
-
+<script src="/javascripts/listPopulation.js"></script>
 
 
 </html>

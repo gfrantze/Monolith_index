@@ -10,7 +10,7 @@ then,
 npm start
 
 
-IMPORTANT: This git is merely a portal that links together the apps from this repo: https://github.com/gfrantze/du-df-treemap  and this repo:  https://github.com/gfrantze/IntersectionApp
+IMPORTANT: This git is merely a portal that links together the apps from this repo: https://github.com/gfrantze/du-df-treemap  and this repo:  https://github.com/gfrantze/Monolith_index
 
 
 patch notes v1.01:
@@ -23,3 +23,6 @@ v1.02:
 
 -lollipop gene view generator is now study wide
 -fixed asterisk parse error
+
+v1.1
+-see intersectionApp and du-df-treemap gits for patch notes
