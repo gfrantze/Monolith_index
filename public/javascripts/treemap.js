@@ -1,10 +1,20 @@
 var loading = false;
+var duplicates = [];
+
+function exit(){
+
+    var text = $(event.target)[0].className;
+
+    if(text == "overlay"){
+        window.location.replace('#');
+    }
+}
 
 
 function getLS(myQuery) {
 
     loading = true;
-    data = {
+    var data = {
         ls: myQuery,
         mc: $("#chn").val()
     };
@@ -18,41 +28,43 @@ function getLS(myQuery) {
         success: function(res) {
 
 
-            if(res.length>0){
+                    if(res.length>0){
 
-                $("#g1").append(res[0].path)
-                $("#g1").append("<br>");
-                $("#g1").append("<br>");
+                        $("#g1").append(res[0].path)
+                        $("#g1").append("<br>");
+                        $("#g1").append("<br>");
 
 
-                for (var i = 0; i < res.length; i++) {
+                        for (var i = 0; i < res.length; i++) {
 
-                    $("#g1").append(res[i].size + "&nbsp;&nbsp;&nbsp;&nbsp;" + res[i].filename + " <br> ");
+                            $("#g1").append(res[i].size + "&nbsp;&nbsp;&nbsp;&nbsp;" + res[i].filename + " <br> ");
 
-                    if(res[i].aalt ){
-                        
-                        console.log(res[i]);
-                        var aalt = res[i].aalt;
+                            if(res[i].aalt ){
+                                
+                                var aalt = res[i].aalt;
 
-                        for(item in aalt){
+                                for(item in aalt){
 
-                            if(aalt[item]!=res[0].path && res[i].size>10000000){
-                                var str_m = aalt[item];
-                                str_m = str_m.replace(":","");
-                             $("#g1").append( "&nbsp;&nbsp;&nbsp;&nbsp;" + "<b>alt location detected  </b> " + str_m + " <br> ");
+                                    if(res[i].size>1000000000){
+                                        var str_m = aalt[item];
+                                        str_m = str_m.replace(":","");
+                                     $("#g1").append( "&nbsp;&nbsp;&nbsp;&nbsp;" + "<b>alt location detected  </b> " + str_m + " <br> ");
+                                    }
+
+                                }
+            
+                    
                             }
 
-                        }
-    
+
+                     }  
+                 }
+
+                    loading = false;
+
             
-                    }
 
-
-             }  
-         }
-
-            loading = false;
-
+    
 
         },
 
@@ -76,8 +88,8 @@ function curryInit(elem, _json, tt) {
 
 
 
-    var w = 1280 - 80,
-        h = 800 - 180,
+    var w = 1280 - 80, //1280 - 80
+        h = 800-180 , //800 - 180
         x = d3.scale.linear().range([0, w]),
         y = d3.scale.linear().range([0, h]),
         color = d3.scale.category20c(),
@@ -164,6 +176,11 @@ function curryInit(elem, _json, tt) {
             if (d.name == "empty") {
                 return "#000000";
             }
+            var found = $.inArray(d.name, duplicates) > -1;
+            if(found){
+                return "#ff0000";
+            }
+
             return color(d.parent.name);
 
         });
@@ -188,6 +205,8 @@ function clearTm() {
 
 function newImg() {
 
+    
+
     $(".spinner").show();
 
     var data = {
@@ -203,7 +222,7 @@ function newImg() {
         success: function(res) {
 
             clearTm();
-            curryInit(document.getElementById("hi"), res, $("#tooltip"));
+            curryInit(document.getElementById("hi"), res, $("#tooltip")) ;
             $(".spinner").hide();
 
         },
@@ -220,4 +239,90 @@ function newImg() {
 
 
 
-window.onload = newImg;
+
+function getDups(){
+
+
+var t = {
+
+    mc: $("#chn").val()
+}
+
+
+duplicates = [];
+    
+$.ajax({
+        type: "POST",
+        url: "/tml/dups",
+        data: t,
+        timeout: 180000,
+        success: function(res) {
+
+
+                if(res.length>0){
+                        for (var i = 0; i < res.length; i++) {
+                            if(res[i].aalt ){
+
+                                var dup = res[i].path;
+                                dup = dup.replace(":","");
+                                duplicates.push(dup);
+                    
+            
+                    
+                            }
+
+
+                     }  
+                 }
+
+                 newImg();
+                 
+
+
+
+        
+        },
+
+        error: function(request, status, err) {
+            alert("error");
+
+        }
+
+    });
+
+
+    
+
+
+}
+
+
+
+
+
+$( document ).ready(function() {
+    
+    var url = window.location.href;
+    var _url = url.split("/");
+
+
+    $("#chn option").each(function()
+    {
+
+        if( $(this).val() == _url[ _url.length-1]) {
+
+            $("#chn").val(_url[_url.length-1] );
+
+
+        }
+
+
+    });
+
+    
+    getDups();
+
+    
+
+});
+

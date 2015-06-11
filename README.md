@@ -26,3 +26,7 @@ v1.02:
 
 v1.1
 -see intersectionApp and du-df-treemap gits for patch notes
+
+v1.3
+-added duplicate detection to treemap
+-interface improvements

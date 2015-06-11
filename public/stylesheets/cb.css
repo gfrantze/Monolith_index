@@ -1,12 +1,12 @@
 body{
-  background:#fff;
+  background: #FBFBFB;
 }
 .spinner{
   width: 155px;
   height: 155px;
   border-radius: 100%;
   background-color: #D8D8D8;
-  border: 10px solid #575757;;
+  border: 10px solid #575757;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -63,8 +63,8 @@ rect {
   font-weight: 500;
   line-height: 26.3999996185303px;
   height:120px;
-  width:1200px;
   word-wrap: break-word;
+  padding: 12px 20px 0 20px;
 }
 
 pre {
@@ -91,6 +91,7 @@ line {
   transition: opacity 500ms;
   visibility: hidden;
   opacity: 0;
+  height:3200px;
 }
 .overlay:target {
   visibility: visible;
@@ -102,7 +103,7 @@ line {
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
+  width: 60%;
   position: relative;
   transition: all 200ms ease-in-out;
 }
@@ -142,8 +143,7 @@ line {
     width: 75%;
   }
   .popup{
-    width: 75%;
+    width: 85%;
   }
 }
-
 
