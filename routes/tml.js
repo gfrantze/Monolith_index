@@ -7,13 +7,6 @@ router.get('/', function(req, res, next) {
     res.render('tml');
 });
 
-router.get('/*',function(req,res,next){
-
-
-res.render('tml');
-
-});
-
 
 
 

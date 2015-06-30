@@ -12,6 +12,8 @@
     
   <div class="container-fluid">
 
+    <a href="/">home</a>
+
     <h1 id="aaa"></h1>
     <div class="spinner"></div>
 

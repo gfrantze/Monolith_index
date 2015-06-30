@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-
+var compression = require('compression');
 var index = require('./routes/index');
 var ia = require('./routes/ia');
 var tml = require('./routes/tml');
@@ -18,6 +18,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(compression());
 
 //use index routes file
 app.use('/', index);

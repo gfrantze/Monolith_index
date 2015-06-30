@@ -30,3 +30,7 @@ v1.1
 v1.3
 -added duplicate detection to treemap
 -interface improvements
+
+v1.4
+-cleaned up intersection app significantly
+-added dynamic routes to treemap tool

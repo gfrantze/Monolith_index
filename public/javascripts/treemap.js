@@ -48,7 +48,7 @@ function getLS(myQuery) {
                                     if(res[i].size>1000000000){
                                         var str_m = aalt[item];
                                         str_m = str_m.replace(":","");
-                                     $("#g1").append( "&nbsp;&nbsp;&nbsp;&nbsp;" + "<b>alt location detected  </b> " + str_m + " <br> ");
+                                     $("#g1").append( "&nbsp;&nbsp;&nbsp;&nbsp;" + "<b>mult location detected  </b> " + str_m + " <br> ");
                                     }
 
                                 }
@@ -305,11 +305,14 @@ $( document ).ready(function() {
     var url = window.location.href;
     var _url = url.split("/");
 
+    console.log(_url);
+
 
     $("#chn option").each(function()
     {
 
         if( $(this).val() == _url[ _url.length-1]) {
+
 
             $("#chn").val(_url[_url.length-1] );
 

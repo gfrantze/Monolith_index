@@ -12,7 +12,6 @@ process.setMaxListeners(0);
 router.get('/', function(req, res, next) {
 
 
-
     db.open(function(err, db1) {
 
 

@@ -41,6 +41,7 @@ function toolTip(diagram, overlaps, sets) {
                 .style("stroke-opacity", 1);
             tooltip.transition().style("opacity", .9);
             tooltip.text(d.size + " items");
+            console.log(d);
         })
         .on("mouseout", function(d, i) {
             d3.select(this).select("circle").transition()
@@ -69,6 +70,7 @@ function toolTip(diagram, overlaps, sets) {
                 .style("stroke-opacity", 1);
             tooltip.transition().style("opacity", .9);
             tooltip.text(d.size + " items");
+            console.log(d);
         })
         .on("mouseout", function(d, i) {
             d3.select(this).transition()
@@ -81,6 +83,7 @@ function toolTip(diagram, overlaps, sets) {
                 .style("top", (d3.event.pageY - 28) + "px");
         })
 }
+
 
 
 function drawDefault() {
@@ -100,13 +103,13 @@ function drawDefault() {
         size: 2
     }];
     var sets = [{
-        label: "A",
+        label: "List A",
         size: 16
     }, {
-        label: "B",
+        label: "List B",
         size: 16
     }, {
-        label: "C",
+        label: "List C",
         size: 16
     }];
     sets = venn.venn(sets, overlaps),
@@ -199,7 +202,11 @@ Redraw Venn.js for four samples. Insert Mongo data.
 */
 
 
+
+
 function fourSetBoilerPlate(res) {
+
+    console.log(res);
 
     clearLists();
     $(".dynamic").html("");
@@ -282,6 +289,8 @@ Client side intersection algorithm for gene lists.
 */
 
 function intersect(a, b) {
+
+if(a && b){
     var t;
     if (b.length > a.length) t = b, b = a, a = t; // indexOf to loop over shorter
     return a
@@ -291,6 +300,10 @@ function intersect(a, b) {
         .filter(function(e) {
             if (b.indexOf(e) !== -1) return true;
         });
+    }
+    else{
+        return 0;
+    }
 }
 
 
@@ -317,64 +330,21 @@ and the intersection is found (entirely client side).
 function geneList() {
 
     clearLists();
-
-
-
-    var set = {
-
-        a: 0,
-        b: 0,
-        c: 0,
-        d: 0,
-        origA: [],
-        origB: [],
-        origC: [],
-        origD: [],
-        ab: 0,
-        ac: 0,
-        ad: 0,
-        bc: 0,
-        bd: 0,
-        cd: 0,
-        abc: 0,
-        abd: 0,
-        acd: 0,
-        bcd: 0,
-        iab: [],
-        iac: [],
-        iad: [],
-        ibc: [],
-        ibd: [],
-        icd: [],
-        abcd: 0,
-        iabc: [],
-        iabd: [],
-        iacd: [],
-        ibcd: [],
-        iabcd: []
-
-    };
-
+    var set = {};
 
     $("#load_icon").show();
 
-    if (document.getElementById("gl1").value) {
-        set.origA = document.getElementById("gl1").value.split(/[\s,]+/).unique();
-        set.a = set.origA.length;
-    }
-    if (document.getElementById("gl2").value) {
-        set.origB = document.getElementById("gl2").value.split(/[\s,]+/).unique();
-        set.b = set.origB.length;
-    }
-    if (document.getElementById("gl3").value) {
-        set.origC = document.getElementById("gl3").value.split(/[\s,]+/).unique();
-        set.c = set.origC.length;
-    }
-    if (document.getElementById("gl4").value) {
-        set.origD = document.getElementById("gl4").value.split(/[\s,]+/).unique();
-        set.d = set.origD.length;
+    var entry_fields = {"a":"gl1", "b":"gl2", "c":"gl3", "d":"gl4"};
+
+    for (item in entry_fields){
+        if(document.getElementById(entry_fields[item]).value   ){
+            var temp = "orig" + item.toUpperCase();
+            set[temp] = document.getElementById(entry_fields[item]).value.split(/[\s,]+/).unique();
+            set[item] = set[temp].length;
+        } 
     }
 
+    console.log(set);
 
     set.iab = intersect(set.origA, set.origB);
     set.iac = intersect(set.origA, set.origC);
@@ -709,5 +679,7 @@ $("#zz").chosen({max_selected_options: 4, width:"95%"});
     });
 
 });
+
+
 
 

@@ -68,6 +68,9 @@ circle:hover {
   display:inline-block;
 }
 
+#accordion p{
+  word-break: break-all;
+}
 
 
 

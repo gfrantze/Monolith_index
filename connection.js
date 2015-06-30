@@ -19,5 +19,5 @@ Establish connection to DB.
 
 module.exports = {
     db: new Db('markers', new Server('it5355.ad.tgen.org', 27017),{safe:true}),
-    _db2: new Db('ngstools', new Server('walle.tgen.org', 27030),{safe:true})
+    _db2: new Db('ngstools', new Server('pbc-dcraig-db1.tgen.org', 27020),{safe:true})
 };

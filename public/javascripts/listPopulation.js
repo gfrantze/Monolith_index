@@ -195,170 +195,31 @@ Populates the accordion lists. Has conditionals for two or three samples.
 
 function populateLists(res, m) {
 
+    console.log(res);
 
+    var accordion = $("#accordion");
+    accordion.empty();
 
-    if (m == 2) {
+    for(var item in res){
+        if( Array.isArray( res[item] )  ){
 
-        $("#accordion").find("div").each(function(i) {
-            if (this.id == "cA") {
-                $(this).find("h5").append(res.a);
-                this.getElementsByTagName('p')[0].innerHTML = res.origA.join(", ");
-            }
-            if (this.id == "cB") {
-                $(this).find("h5").append(res.b);
-                this.getElementsByTagName('p')[0].innerHTML = res.origB.join(", ");
-            }
-            if (this.id == "cAB") {
-                $(this).find("h5").append(res.ab);
-                this.getElementsByTagName('p')[0].innerHTML = res.iab.join(", ");
-            }
+            var t_item = item.replace("orig","");
+            t_item = t_item.replace("i","");
+            t_item = t_item.toUpperCase();
+            var t_id = "c" + t_item;
 
-        });
+            var title = $("<h3>"+t_item+"</h3>");
+            var contents = $("<div id=\""+t_id+"\"   >"+"<h5>"+res[item].length+"</h5>"+"<p>"+res[item]+"</p>"+"</div>");
+            
+            accordion.append(title);
+            accordion.append(contents);
+        }
     }
 
-    if (m == 3) {
-        $("#accordion").find("div").each(function(i) {
-
-
-            var il, orig;
-            if (this.id == "cA") {
-                il = res.a;
-                orig = res.origA;
-            }
-            if (this.id == "cB") {
-                il = res.b;
-                orig = res.origB;
-            }
-            if (this.id == "cC") {
-                il = res.c;
-                orig = res.origC;
-            }
-            if (this.id == "cAB") {
-                il = res.ab;
-                orig = res.iab;
-            }
-            if (this.id == "cAC") {
-                il = res.ac;
-                orig = res.iac;
-            }
-            if (this.id == "cBC") {
-                il = res.bc;
-                orig = res.ibc;
-            }
-            if (this.id == "cABC") {
-                il = res.abc;
-                orig = res.iabc;
-            }
-
-            if (il && orig) {
-
-                $(this).find("h5").append(il);
-                this.getElementsByTagName('p')[0].innerHTML = orig.join(", ");
-
-            }
+    accordion.accordion("refresh");
 
 
 
-        });
-
-    }
-
-
-    if (m == 4) {
-
-
-        $("#accordion").find("div").each(function(i) {
-
-
-
-
-            var il, orig;
-            if (this.id == "cA") {
-                il = res.a;
-                orig = res.origA;
-            }
-            if (this.id == "cB") {
-                il = res.b;
-                orig = res.origB;
-            }
-            if (this.id == "cC") {
-                il = res.c;
-                orig = res.origC;
-            }
-            if (this.id == "cD") {
-                il = res.d;
-                orig = res.origD;
-            }
-
-
-
-            if (this.id == "cAB") {
-                il = res.ab;
-                orig = res.iab;
-            }
-            if (this.id == "cAC") {
-                il = res.ac;
-                orig = res.iac;
-            }
-            if (this.id == "cAD") {
-                il = res.ad;
-                orig = res.iad;
-            }
-
-
-            if (this.id == "cBC") {
-                il = res.bc;
-                orig = res.ibc;
-            }
-            if (this.id == "cBD") {
-                il = res.bd;
-                orig = res.ibd;
-            }
-            if (this.id == "cCD") {
-                il = res.cd;
-                orig = res.icd;
-            }
-
-
-
-            if (this.id == "cABC") {
-                il = res.abc;
-                orig = res.iabc;
-            }
-            if (this.id == "cABD") {
-                il = res.abd;
-                orig = res.iabd;
-            }
-            if (this.id == "cACD") {
-                il = res.acd;
-                orig = res.iacd;
-            }
-            if (this.id == "cBCD") {
-                il = res.bcd;
-                orig = res.ibcd;
-            }
-
-
-            if (this.id == "cABCD") {
-                il = res.abcd;
-                orig = res.iabcd;
-            }
-
-
-            if (il && orig) {
-
-                $(this).find("h5").append(il);
-                this.getElementsByTagName('p')[0].innerHTML = orig.join(", ");
-
-            }
-
-
-
-        });
-
-
-
-    }
 
 
 

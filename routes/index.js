@@ -9,5 +9,9 @@ res.render('index');
 });
 
 
+router.get('/:var(liang|IVY|keats|su2c|ngddata|carpten|trent|MMRF|kjensen|AshionDrop)',function(req,res,next){
+res.render('tml');
+});
+
 
 module.exports = router;
