@@ -34,9 +34,17 @@
 }
 
 .tool img{
-	height:auto;
-	width:140px;
-	padding:4px 0 0 0;
+	max-height: 120px;
+    max-width: 320px;
+    display:block;
+    margin:auto;
+    vertical-align: middle;
+    padding:16px 0 0 0;
+}
+.helper {
+    display: inline-block;
+    height: auto;
+    vertical-align: middle;
 }
 
 </style>
@@ -68,7 +76,7 @@
 		<div class="col-xs-4 tool">
 				<b>Markers Lollipop Generator</b>
 				<a href="/lol"></a><br>
-				<img src="https://github.com/pbnjay/lollipops/raw/master/tp53.png?raw=true"/>
+				 <span class="helper"></span><img src="/images/tp53.png"/>
 		</div>
 
 		

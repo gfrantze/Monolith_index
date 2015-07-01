@@ -201,7 +201,7 @@ function populateLists(res, m) {
     accordion.empty();
 
     for(var item in res){
-        if( Array.isArray( res[item] )  ){
+        if( Array.isArray( res[item] ) && res[item].length>0  ){
 
             var t_item = item.replace("orig","");
             t_item = t_item.replace("i","");

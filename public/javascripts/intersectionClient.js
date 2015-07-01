@@ -41,7 +41,12 @@ function toolTip(diagram, overlaps, sets) {
                 .style("stroke-opacity", 1);
             tooltip.transition().style("opacity", .9);
             tooltip.text(d.size + " items");
-            console.log(d);
+        })
+        .on("click",function(d,i){
+            if(d.label){
+            $("#accordion").accordion({active:d.label.charCodeAt(0)-65})
+            }
+
         })
         .on("mouseout", function(d, i) {
             d3.select(this).select("circle").transition()
@@ -70,7 +75,23 @@ function toolTip(diagram, overlaps, sets) {
                 .style("stroke-opacity", 1);
             tooltip.transition().style("opacity", .9);
             tooltip.text(d.size + " items");
-            console.log(d);
+        })
+        .on("click",function(d,i){
+            var accord_ref = $("#accordion").find("div");
+            var ref_string = "c";
+            var k = d.sets;
+            var settings = {0:"A",1:"B",2:"C",3:"D"};
+            for(var item=0; item<k.length; item++){
+                var p = k[item];
+                ref_string=ref_string+settings[p];
+            }
+            $.each(accord_ref, function(index,value){ 
+                if(value.id==ref_string){
+                    $("#accordion").accordion({active:index})
+                    return false;
+                }
+            })
+
         })
         .on("mouseout", function(d, i) {
             d3.select(this).transition()
