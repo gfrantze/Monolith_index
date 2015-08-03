@@ -23,7 +23,7 @@ router.post('/loadList', function(req, res) {
 
 var o = req.body.option;
 
-            if(o){
+            if(o && db){
 
 
     db.open(function(err, db1) {
@@ -117,17 +117,23 @@ var o = req.body.option;
 
 
 
+
+
+
+
 });
 
 
 
 router.get('/loadDb', function(req, res, next) {
 
+
+    if(db){
+
     db.open(function(err, db2) {
 
         if (err) {
             console.log("error");
-            db2.close();
         } else {
 
             db2.listCollections({name:{$in:['tumor']} }).toArray(function(err, names) {
@@ -145,6 +151,8 @@ router.get('/loadDb', function(req, res, next) {
         }
 
     });
+
+    }
 });
 
 
@@ -192,7 +200,7 @@ router.post('/', function(req, res, next) {
 
 
 
-    if (data.u_db) {
+    if (data.u_db && db) {
 
         console.log(data);
 

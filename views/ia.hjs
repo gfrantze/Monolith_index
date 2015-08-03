@@ -3,8 +3,8 @@
   <head>
     <title>tgen intersection tool</title>
         <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/jquery-ui.css">
     <link rel='stylesheet' href='/stylesheets/chosen.min.css' />
 
   </head>
@@ -20,7 +20,7 @@
 <div class="row">
   <div class="col-xs-2">
     <div class="tgenHeader">
-      <img src="https://www.tgen.org/media/58629/TGEN_LOGO.png"/>
+      <img src="/images/TGEN_LOGO.png"/>
     </div>
   </div>
   
@@ -69,15 +69,18 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="sub21">
-                        <textarea id="gl1" class="form-control"></textarea>
+                        <textarea id="gl1" class="form-control">a,b,c,d,f
+                          </textarea>
 
                     </div>
                     <div class="tab-pane fade" id="sub22">
-                        <textarea id="gl2" class="form-control"></textarea>
+                        <textarea id="gl2" class="form-control">a,b,c,e,eg,h
+                        </textarea>
 
                     </div>
                     <div class="tab-pane fade" id="sub23">
-                        <textarea id="gl3" class="form-control"></textarea>
+                        <textarea id="gl3" class="form-control">z,s,w,f,a
+                        </textarea>
                     </div>
 
                     <div class="tab-pane fade" id="sub24">
@@ -115,6 +118,9 @@
 
 <div class="row text-center">
  
+
+
+<h3 id="identical"></h3>
 <div id="in_db_tab" style="margin-top:12px;">
 
 
@@ -211,12 +217,12 @@
 
 
 
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="/javascripts/d3.v3.min.js"></script>
 <script src="/javascripts/venn.js"></script>
-<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="/javascripts/jquery-2.1.1.js"></script>
 <script src="/javascripts/chosen.jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/jquery-ui.js"></script>
 <script src="/javascripts/intersectionClient.js"></script>
 <script src="/javascripts/listPopulation.js"></script>
 

@@ -719,6 +719,9 @@
                     }
                 }
                 arcs.push(arc);
+                if(  !arc  ) {
+                    $("#identical").text("Cannot render"); 
+                }
                 arcArea += venn.circleArea(arc.circle.radius, arc.width);
                 p2 = p1;
             }

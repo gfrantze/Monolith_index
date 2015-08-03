@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+ 
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+
+<style>
+textarea {
+
+font-size: 12px;
+
+}
+
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+}
+
+text {
+  font: 10px sans-serif;
+  font-weight:bold;
+}
+
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+
+
+</style>
+
+<body>
+
+
+
+
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-xs-10">
+
+    <div id="circ"></div>
+
+    </div>
+
+
+    <div class="col-xs-2">
+
+  <div>
+    <button type="button" id="csv_init">generate</button>
+  </div>
+
+
+    <textarea id="csv_input" cols="32" rows="42" style="margin-left:8px">
+{
+  "settings": {
+    "font": "helvetica",
+    "fontSize": "11px",
+    "padAngle": 0,
+    "textDistance": -4
+  },
+  "layer1": {
+    "content": [
+      {
+        "start" : 10,
+        "end" : 80,
+        "color": "red",
+        "text": [
+          {
+            "val": "this is a test",
+            "offset": 0.1
+          },
+          {
+            "val": "this is a test",
+            "offset": 0.2
+          },
+          {
+            "val": "this is a test",
+            "offset": 0.3
+          }
+        ]
+      },
+      {
+        "start" : 90,
+        "end" : 180,
+        "color": "indigo",
+        "text": [
+          {
+            "val": "this is a test",
+            "offset": 0.1
+          },
+          {
+            "val": "this is a test",
+            "offset": 0.2
+          },
+          {
+            "val": "this is a test",
+            "offset": 0.3
+          }
+        ]
+      },
+      {
+        "start" : 180,
+        "end" : 360,
+        "color": "green",
+        "text": [
+          {
+            "val": "text can be offset to your liking",
+            "offset": 0
+          },
+          {
+            "val": "so this way",
+            "offset": 0.5
+          },
+          {
+            "val": "the power is yours",
+            "offset": 1
+          }
+        ]
+      }
+    ]
+  },
+  "layer2": {
+    "content": [
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 5,
+        "value": -2
+      },
+      {
+        "size": 2,
+        "value": 1
+      },
+      {
+        "size": 3,
+        "value": -1
+      },
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 5,
+        "value": -2
+      },
+      {
+        "size": 2,
+        "value": 1
+      },
+      {
+        "size": 3,
+        "value": -1
+      },
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 5,
+        "value": -2
+      },
+      {
+        "size": 2,
+        "value": 1
+      },
+      {
+        "size": 3,
+        "value": -1
+      },
+      {
+        "size": 3,
+        "value": -2
+      },
+      {
+        "size": 12,
+        "value": 2
+      },
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 7,
+        "value": 1
+      },
+      {
+        "size": 3,
+        "value": -2
+      },
+      {
+        "size": 12,
+        "value": 2
+      },
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 7,
+        "value": 1
+      },
+      {
+        "size": 3,
+        "value": -2
+      },
+      {
+        "size": 12,
+        "value": 2
+      },
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 7,
+        "value": 1
+      }
+    ]
+  },
+  "layer3": {
+    "content": [
+      {
+        "size": 3,
+        "value": -2,
+        "connection": 1
+      },
+      {
+        "size": 12,
+        "value": 0
+      },
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 7,
+        "value": 0
+      },
+      {
+        "size": 3,
+        "value": 0
+      },
+      {
+        "size": 12,
+        "value": 2
+      },
+      {
+        "size": 9,
+        "value": 2,
+        "connection": 2
+      },
+      {
+        "size": 7,
+        "value": 1
+      },
+      {
+        "size": 3,
+        "value": -2,
+        "connection": 3
+      },
+      {
+        "size": 12,
+        "value": 2
+      },
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 7,
+        "value": 0
+      },
+      {
+        "size": 3,
+        "value": -2,
+        "connection": 1,
+        "offset": 0.2
+      },
+      {
+        "size": 12,
+        "value": 2
+      },
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 7,
+        "value": 1
+      },
+      {
+        "size": 3,
+        "value": -2
+      },
+      {
+        "size": 12,
+        "value": 0
+      },
+      {
+        "size": 9,
+        "value": 2
+      },
+      {
+        "size": 29,
+        "value": 1,
+        "connection": 3,
+        "offset": 0.754
+      },
+      {
+        "size": 3,
+        "value": -2
+      },
+      {
+        "size": 12,
+        "value": 2
+      },
+      {
+        "size": 9,
+        "value": 0
+      },
+      {
+        "size": 7,
+        "value": 1
+      },
+      {
+        "size": 1,
+        "value": 1
+      },
+      {
+        "size": 1,
+        "value": -1,
+        "connection": 2
+      },
+      {
+        "size": 1,
+        "value": 1
+      },
+      {
+        "size": 1,
+        "value": -1
+      },
+      {
+        "size": 1,
+        "value": 1,
+        "connection": 1
+      },
+      {
+        "size": 1,
+        "value": -1
+      },
+      {
+        "size": 1,
+        "value": 1
+      },
+      {
+        "size": 1,
+        "value": 0
+      },
+      {
+        "size": 1,
+        "value": 1
+      },
+      {
+        "size": 1,
+        "value": -1
+      }
+    ]
+  }
+}
+    </textarea>
+
+</div>
+
+  </div>
+
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script>
+
+
+var original_copy = {};
+
+
+$( document ).ready(function() {
+
+
+var block = JSON.parse( $("#csv_input").val() );
+doD3(block);
+
+
+});
+
+
+$("#csv_init").click(function() {
+
+var block = JSON.parse( $("#csv_input").val() );
+doD3(block);
+
+
+
+});
+
+
+
+
+
+function angle(d) {
+      var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
+      return a > 90 ? a - 180 : a;
+}
+
+
+
+
+function findSize(content){
+
+
+if(content[0].start){
+
+
+console.log("content is ");
+console.log(content);
+
+
+var s = [];
+
+  for(i in content){
+
+    var item = content[i];
+
+    if(i==0){
+      s.push({"s":item.start-1, "r":false});
+      s.push({"s":item.end-item.start, "r":true, "i":item});      
+    }
+
+    if (i>0 && i<content.length){
+      s.push({"s":item.start-content[i-1].end, "r":false});
+      s.push({"s":item.end-item.start, "r":true, "i":item});
+    }
+
+    if ( i === content.length ) {
+      s.push({"s":item.start-content[i-1].end, "r":false});
+      s.push({"s":item.end-item.start, "r":true, "i":item});
+      s.push({"s":360-item.end, "r":false});
+    }
+
+
+  }
+
+
+  for( i in s ){
+
+    if (s[i].s === 0){
+      s.splice(i,1);
+    }
+  }
+
+
+console.log("return value glitch in the matrix");
+console.log(s);
+return s;
+
+}
+
+  else{
+
+
+
+  var set = [];
+
+  for (item in content){
+    set.push(content[item].size);
+  }
+
+  return set;
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function doD3(block){
+
+$("#circ").empty();
+
+
+
+
+
+/*
+var width = 480,
+    height = 480;
+
+var cluster = d3.layout.cluster()
+    .size([height, width - 160]);
+*/
+
+
+
+
+var width = 1024,
+    height = 1024,
+    radius = Math.min(width, height)/3,
+    labelr = radius - 30;
+
+var color = d3.scale.category20();
+var color2 = d3.scale.ordinal().range(["red", "blue", "green"]);
+
+
+var padAngle = 0;
+
+if(block.settings.padAngle && block.settings.padAngle!=0.00)
+  padAngle=block.settings.padAngle;
+
+
+var pie = d3.layout.pie()
+    .sort(null)
+    .padAngle(padAngle);
+
+var arc = d3.svg.arc()
+    .innerRadius(radius - 70)
+    .outerRadius(radius - 50);
+
+
+var svg = d3.select("#circ").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+
+
+/*
+
+
+
+layer 1 
+
+
+
+*/
+
+var pos = findSize(block.layer2.content);
+var ref = block.layer2.content;
+
+var work = svg.append("g");
+
+work.selectAll("path")
+    .data(pie( pos  ))
+  .enter().append("path")
+.attr("fill", function(d, i) { 
+        if(ref[i].value>0){
+          return "red";
+        }
+        if(ref[i].value==0){
+          return "black";    
+        } if(ref[i].value<0){
+          return "green";   
+        }
+    return "blue";
+})
+    .attr("d", function(d,i){
+        if(d3.select(this).attr("fill")=="red")
+            {var arc2 = d3.svg.arc()
+            .innerRadius(radius - 114 + (6*ref[i].value) )
+            .outerRadius(radius - 114)
+             
+             return arc2(d);
+            }
+        if(d3.select(this).attr("fill")=="black")
+            {
+                var arc3 = d3.svg.arc()
+            .innerRadius(radius - 115  )
+            .outerRadius(radius - 113 )
+                return arc3(d);}
+        if(d3.select(this).attr("fill")=="green")
+            {var arc4 = d3.svg.arc()
+            .innerRadius(radius - 114 + (6*ref[i].value) ) 
+            .outerRadius(radius - 114)
+            return arc4(d);
+            }  
+      var arc3 = d3.svg.arc()
+                  .innerRadius(radius - 114)
+                  .outerRadius(radius - 114)
+                      
+      return arc3(d);
+    });
+
+/*
+
+
+
+end layer 1 
+
+
+
+*/
+
+/*
+
+
+
+
+start layer 2 
+
+
+
+
+*/
+
+
+var pos2 = findSize(block.layer3.content);
+var ref2 = block.layer3.content;
+
+var work2 = svg.append("g");
+
+work2.selectAll("path")
+    .data(pie( pos2  ))
+  .enter().append("path")
+.attr("fill", function(d, i) { 
+        if(ref2[i].value>0){
+          return "red";
+        }
+        if(ref2[i].value==0){
+          return "black";    
+        } if(ref2[i].value<0){
+          return "green";   
+        }
+    return "blue";
+})
+    .attr("d", function(d,i){
+        if(d3.select(this).attr("fill")=="red")
+            {var arc2 = d3.svg.arc()
+            .innerRadius(radius - 160 + (6*ref2[i].value) )
+            .outerRadius(radius - 160)
+             
+             return arc2(d);
+            }
+        if(d3.select(this).attr("fill")=="black")
+            {
+                var arc3 = d3.svg.arc()
+            .innerRadius(radius - 161  )
+            .outerRadius(radius - 159 )
+                return arc3(d);}
+        if(d3.select(this).attr("fill")=="green")
+            {var arc4 = d3.svg.arc()
+            .innerRadius(radius - 160 + (6*ref2[i].value) ) 
+            .outerRadius(radius - 160)
+            return arc4(d);
+            }  
+      var arc3 = d3.svg.arc()
+                  .innerRadius(radius - 160)
+                  .outerRadius(radius - 160)
+                      
+      return arc3(d);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var s1 = [];
+s1 = findSize(block.layer1.content);
+
+
+
+var outerData = [];
+
+for(i in s1){
+  outerData.push(s1[i].s);
+}
+
+
+var outer = svg.append("g");
+
+outer.selectAll("path")
+    .data(pie( outerData ))
+  	.enter().append("path")
+    .attr("fill", function(d, i) { 
+
+      if(! ('i' in s1[i])  ){
+        return "black";
+      }
+      
+      if(s1[i].i.color){
+        return s1[i].i.color;
+      }
+
+
+      
+      return color(i); })
+    .attr("d", arc);
+
+
+
+
+
+
+outer.selectAll("path").each(function(i,e){
+
+original_copy = {};
+original_copy = i;
+
+
+if(s1[e].i){
+
+    //for (it in block.layer1.content[e].text){
+      for(it in s1[e].i.text){
+
+      var offsetTest = {};
+
+
+      offsetTest.startAngle = original_copy.startAngle;
+      //offsetTest.endAngle = i.endAngle;
+      //offsetTest.endAngle = i.startAngle;
+
+      var ref = s1[e].i.text[it];
+  
+      var t = ref.val;
+      var off = ref.offset;
+      var fs = block.settings.fontSize;
+      var f = block.settings.font;
+
+      offsetTest.endAngle = original_copy.startAngle + off*2*(original_copy.endAngle - original_copy.startAngle);
+
+
+
+
+
+      if('offset' in ref && off>=0.0 && off<=1.0){
+
+        var c = arc.centroid(offsetTest),
+          x = c[0],
+          y = c[1],
+          // pythagorean theorem for hypotenuse
+          h = Math.sqrt(x*x + y*y)-block.settings.textDistance;
+
+
+
+          var te_ = outer.append("svg:text")
+            .attr("transform", function(d) {
+                return "translate(" + (x/h * labelr) +  ',' +
+                   (y/h * labelr) +  ")rotate(" + angle(offsetTest) + ")"; 
+            })
+            .attr("dy", ".35em")
+            .attr("text-anchor", function() {
+                return (offsetTest.endAngle + offsetTest.startAngle)/2 > Math.PI ?
+                    "end" : "start";
+            })
+            .style("font-size", fs)
+            .style("font-family", f)
+            .text( t );
+
+
+      }else{
+
+        var c = arc.centroid(original_copy),
+          x = c[0],
+          y = c[1],
+          // pythagorean theorem for hypotenuse
+          h = Math.sqrt(x*x + y*y)-block.settings.textDistance;
+
+
+
+          var te_ = outer.append("svg:text")
+            .attr("transform", function(d) {
+                return "translate(" + (x/h * labelr) +  ',' +
+                   (y/h * labelr) +  ")rotate(" + angle(original_copy) + ")"; 
+            })
+            .attr("dy", ".35em")
+            .attr("text-anchor", function() {
+                return (original_copy.endAngle + original_copy.startAngle)/2 > Math.PI ?
+                    "end" : "start";
+            })
+            .style("font-size", fs)
+            .style("font-family", f)
+            .text( t );
+
+      }
+      
+
+        
+
+
+    }
+
+  }
+              
+});
+
+
+
+
+/*
+
+var arc5 = d3.svg.arc()
+    .innerRadius(radius - 180)
+    .outerRadius(radius - 180);
+
+    
+var innerMost = svg.append("g");
+
+innerMost.selectAll("path")
+    .data(pie(outerData))
+  .enter().append("path")
+    .attr("fill", function(d, i) { 
+      return "blue"; })
+    .attr("d", arc5);
+
+*/
+
+
+
+
+var points = [];
+var numCons = 0;
+
+
+work2.selectAll("path").each(function(i,e){
+    
+    var p = {};
+    var c = null;
+    var offsetClone = {};
+
+
+
+    if('offset' in block.layer3.content[e] && block.layer3.content[e].offset>=0.0 && block.layer3.content[e].offset<=1.0){
+
+      var off = block.layer3.content[e].offset;
+      
+      offsetClone.startAngle = i.startAngle;
+      offsetClone.endAngle = i.startAngle + off*2*(i.endAngle - i.startAngle);
+
+
+
+      c = arc.centroid(offsetClone),
+              x = c[0],
+              y = c[1],
+              // pythagorean theorem for hypotenuse
+              h = Math.sqrt(x*x + y*y)+242;
+
+    } else {
+     
+      c = arc.centroid(i),
+              x = c[0],
+              y = c[1],
+              // pythagorean theorem for hypotenuse
+              h = Math.sqrt(x*x + y*y)+242;
+    }
+
+
+            if(block.layer3.content[e].connection && block.layer3.content[e].connection>0) {
+              p.c = block.layer3.content[e].connection;
+                if(p.c>numCons){
+                  numCons=p.c;
+                }
+              p.x = x/h*labelr;
+              p.y = y/h*labelr;
+              points.push(p);
+            }
+
+   
+
+            
+
+});
+
+
+var temp;
+
+for(var i = 1; i<=numCons; i++){
+
+  temp = [];
+  
+  for( var j = 0; j<points.length; j++){
+    if(points[j].c == i){
+      temp.push( points[j]);
+    }
+  
+
+
+
+  }
+
+
+
+
+if(temp.length==2){
+
+var cur = svg.append("g")
+             .attr("fill", "none");
+
+
+var curved = d3.svg.line()
+    .x(function(d) { return d.x; })
+    .y(function(d) { return d.y; })
+    .interpolate("cardinal")
+    .tension(0);
+
+
+var x1 = temp[0].x;
+var x2 = temp[1].x;
+var y1 = temp[0].y;
+var y2 = temp[1].y;
+
+
+
+var draw = [ {x: x1, y: y1}, {x: (x1+x2)/2.5 , y: (y1+y2)/2.5 }, {x:x2, y:y2 }];
+
+cur.append("path").attr("d", curved(draw)).attr("stroke", "#000");
+
+}
+
+if(temp.length>2){
+
+
+
+  for(item in temp){
+    for(item2 in temp){
+
+      if(item2!=item){
+
+
+        var cur = svg.append("g")
+                 .attr("fill", "none");
+
+
+        var curved = d3.svg.line()
+            .x(function(d) { return d.x; })
+            .y(function(d) { return d.y; })
+            .interpolate("cardinal")
+            .tension(0);
+
+        
+        var draw = [ {x: temp[item2].x, y: temp[item2].y }, {x: (temp[item2].x+temp[item].x)/2.5 , y: (temp[item2].y +temp[item].y )/2.5 }, {x: temp[item].x , y: temp[item].y }];
+
+        cur.append("path").attr("d", curved(draw)).attr("stroke", "#000");
+
+    }
+
+
+
+    }
+  }
+
+
+
+
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+};
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+
+
+</html>

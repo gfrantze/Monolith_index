@@ -227,10 +227,12 @@ Redraw Venn.js for four samples. Insert Mongo data.
 
 function fourSetBoilerPlate(res) {
 
-    console.log(res);
+
 
     clearLists();
     $(".dynamic").html("");
+
+
 
     sets = [{
         label: "A".concat(res.a),
@@ -293,12 +295,15 @@ function fourSetBoilerPlate(res) {
     ];
 
 
+
     sets = venn.venn(sets, overlaps),
         diagram = venn.drawD3Diagram(d3.select(".dynamic"), sets, 320, 320);
 
 
+  
     populateLists(res, 4);
     toolTip(diagram, overlaps, sets);
+    
 
 }
 
@@ -309,7 +314,26 @@ Client side intersection algorithm for gene lists.
 
 */
 
+
+
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
+
+
+function arr_diff(a,b) {
+    if(a instanceof Array && b instanceof Array){
+        return a.diff(b);
+    }
+    else{
+        return 0;
+    }
+}
+
+
+
 function intersect(a, b) {
+
 
 if(a && b){
     var t;
@@ -323,8 +347,15 @@ if(a && b){
         });
     }
     else{
+        console.log("intersect returned 0");
         return 0;
     }
+
+
+
+
+
+
 }
 
 
@@ -353,6 +384,7 @@ function geneList() {
     clearLists();
     var set = {};
 
+    $("#identical").empty();
     $("#load_icon").show();
 
     var entry_fields = {"a":"gl1", "b":"gl2", "c":"gl3", "d":"gl4"};
@@ -365,7 +397,6 @@ function geneList() {
         } 
     }
 
-    console.log(set);
 
     set.iab = intersect(set.origA, set.origB);
     set.iac = intersect(set.origA, set.origC);
@@ -374,10 +405,55 @@ function geneList() {
     set.ibd = intersect(set.origB, set.origD);
     set.icd = intersect(set.origC, set.origD);
 
+
+
     set.iabc = intersect(set.iab, set.iac);
     set.iabd = intersect(set.iab, set.ibd);
     set.iacd = intersect(set.iac, set.icd);
     set.ibcd = intersect(set.ibc, set.icd);
+
+
+
+
+
+if(set.origA && set.origB && set.origC){
+
+    set.iabNabc = arr_diff(set.iab, set.iabc);
+    set.iacNabc = arr_diff(set.iac, set.iabc);
+    set.iadNabc = arr_diff(set.iad, set.iabc);
+    set.ibcNabc = arr_diff(set.ibc, set.iabc);
+    set.ibdNabc = arr_diff(set.ibd, set.iabc);
+    set.icdNabc = arr_diff(set.icd, set.iabc);
+
+}
+
+
+    if(set.origA && set.origB && set.origC && set.origD){
+
+    set.iabNabd = arr_diff(set.iab, set.iabd);
+    set.iacNabd = arr_diff(set.iac, set.iabd);
+    set.iadNabd = arr_diff(set.iad, set.iabd);
+    set.ibcNabd = arr_diff(set.ibc, set.iabd);
+    set.ibdNabd = arr_diff(set.ibd, set.iabd);
+    set.icdNabd = arr_diff(set.icd, set.iabd);
+
+    set.iabNacd = arr_diff(set.iab, set.iacd);
+    set.iacNacd = arr_diff(set.iac, set.iacd);
+    set.iadNacd = arr_diff(set.iad, set.iacd);
+    set.ibcNacd = arr_diff(set.ibc, set.iacd);
+    set.ibdNacd = arr_diff(set.ibd, set.iacd);
+    set.icdNacd = arr_diff(set.icd, set.iacd);
+
+    set.iabNbcd = arr_diff(set.iab, set.ibcd);
+    set.iacNbcd = arr_diff(set.iac, set.ibcd);
+    set.iadNbcd = arr_diff(set.iad, set.ibcd);
+    set.ibcNbcd = arr_diff(set.ibc, set.ibcd);
+    set.ibdNbcd = arr_diff(set.ibd, set.ibcd);
+    set.icdNbcd = arr_diff(set.icd, set.ibcd);
+
+    }
+
+
 
     set.iabcd = intersect(set.iab, set.icd);
 
@@ -395,19 +471,22 @@ function geneList() {
 
     set.abcd = set.iabcd.length;
 
-    if (set.a && set.b && !set.c && !set.d) {
+
+
+    if (set.origA && set.origB && !set.origC && !set.origD) {
         twoSetBoilerPlate(set);
     }
 
-    if (set.a && set.b && set.c && !set.d) {
+    if (set.origA && set.origB && set.origC && !set.origD) {
         threeSetBoilerPlate(set);
     }
 
-    if (set.a && set.b && set.c && set.d) {
+    if (set.origA && set.origB && set.origC && set.origD) {
         fourSetBoilerPlate(set);
     }
 
     $("#load_icon").hide();
+
 
 
 }
@@ -642,7 +721,6 @@ d3.select("#save").on("click", function() {
         .attr("xmlns", "http://www.w3.org/2000/svg")
         .node().parentNode.innerHTML;
 
-    //console.log(html);
     var imgsrc = 'data:image/svg+xml;base64,' + btoa(html);
     var img = '<img src="' + imgsrc + '">';
     d3.select("#svgdataurl").html(img);

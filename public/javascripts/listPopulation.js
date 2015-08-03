@@ -10,7 +10,6 @@ function populateCollectionList(data) {
 
     for (var item in data) {
 
-        console.log(data[item]);
 
         if (data[item].name == "germline" || data[item].name == "tumor") {
             $('#selectDb')
@@ -62,7 +61,6 @@ function getSampleList() {
         $("#loading").show();
 
         if (!res) {
-            console.log("null");
             $("#loading").text("timed out");
         }
 
@@ -195,7 +193,6 @@ Populates the accordion lists. Has conditionals for two or three samples.
 
 function populateLists(res, m) {
 
-    console.log(res);
 
     var accordion = $("#accordion");
     accordion.empty();
@@ -203,13 +200,24 @@ function populateLists(res, m) {
     for(var item in res){
         if( Array.isArray( res[item] ) && res[item].length>0  ){
 
+            var m = res[item];
+
+
+            if(m[m.length-1]==""){
+                m.pop();
+            }
+
             var t_item = item.replace("orig","");
             t_item = t_item.replace("i","");
+            t_item = t_item.replace("N","-");
             t_item = t_item.toUpperCase();
+
+        
+
             var t_id = "c" + t_item;
 
             var title = $("<h3>"+t_item+"</h3>");
-            var contents = $("<div id=\""+t_id+"\"   >"+"<h5>"+res[item].length+"</h5>"+"<p>"+res[item]+"</p>"+"</div>");
+            var contents = $("<div id=\""+t_id+"\"   >"+"<h5>"+m.length+"</h5>"+"<p>"+m+"</p>"+"</div>");
             
             accordion.append(title);
             accordion.append(contents);
