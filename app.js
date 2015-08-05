@@ -7,6 +7,7 @@ var index = require('./routes/index');
 var ia = require('./routes/ia');
 var tml = require('./routes/tml');
 var lol = require('./routes/lol');
+var circ = require('./routes/circ');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use('/', index);
 app.use('/ia', ia);
 app.use('/tml',tml);
 app.use('/lol',lol);
+app.use('/circ',circ);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

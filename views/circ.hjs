@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
 </head>
 
 <style>
@@ -62,6 +62,10 @@ form {
 
 
 <div class="container-fluid">
+
+
+
+  <a href="/">home</a>
 
   <div class="row">
 
@@ -151,249 +155,98 @@ form {
   "layer2": {
     "content": [
       {
-        "size": 9,
+        "start" : 1,
+        "end" : 40,
+        "color" : "teal",
         "value": 2
       },
       {
-        "size": 5,
+        "start" : 40,
+        "end" : 92,
+        "color" : "indigo",
         "value": -2
       },
       {
-        "size": 2,
-        "value": 1
+        "start" : 100,
+        "end" : 140,
+        "color" : "#6633FF",
+        "value": 2
       },
-      {
-        "size": 3,
-        "value": -1
-      },
-      {
-        "size": 9,
+      { 
+        "start" : 150,
+        "end" : 190,
+        "color" : "orange",
         "value": 2
       },
       {
-        "size": 5,
+        "start" : 200,
+        "end" : 240,
+        "value": 1
+      },
+      {
+        "start" : 240,
+        "end" : 260,
         "value": -2
       },
       {
-        "size": 2,
-        "value": 1
-      },
-      {
-        "size": 3,
-        "value": -1
-      },
-      {
-        "size": 9,
+        "start" : 260,
+        "end" : 360,
+        "color" : "#6633FF",
         "value": 2
-      },
-      {
-        "size": 5,
-        "value": -2
-      },
-      {
-        "size": 2,
-        "value": 1
-      },
-      {
-        "size": 3,
-        "value": -1
-      },
-      {
-        "size": 3,
-        "value": -2
-      },
-      {
-        "size": 12,
-        "value": 2
-      },
-      {
-        "size": 9,
-        "value": 2
-      },
-      {
-        "size": 7,
-        "value": 1
-      },
-      {
-        "size": 3,
-        "value": -2
-      },
-      {
-        "size": 12,
-        "value": 2
-      },
-      {
-        "size": 9,
-        "value": 2
-      },
-      {
-        "size": 7,
-        "value": 1
-      },
-      {
-        "size": 3,
-        "value": -2
-      },
-      {
-        "size": 12,
-        "value": 2
-      },
-      {
-        "size": 9,
-        "value": 2
-      },
-      {
-        "size": 7,
-        "value": 1
       }
     ]
   },
   "layer3": {
     "content": [
       {
-        "size": 3,
+        "start" : 10,
+        "end" : 40,
         "value": -2,
         "connection": 1
       },
       {
-        "size": 12,
-        "value": 0
-      },
-      {
-        "size": 9,
+        "start" : 44,
+        "end" : 55,
+        "color" : "#00FF66",
         "value": 2
       },
       {
-        "size": 7,
-        "value": 0
-      },
-      {
-        "size": 3,
-        "value": 0
-      },
-      {
-        "size": 12,
-        "value": 2
-      },
-      {
-        "size": 9,
+        "start" : 60,
+        "end" : 80,
         "value": 2,
         "connection": 2
       },
       {
-        "size": 7,
-        "value": 1
-      },
-      {
-        "size": 3,
+        "start" : 60,
+        "end" : 84,
         "value": -2,
         "connection": 3
       },
-      {
-        "size": 12,
-        "value": 2
-      },
-      {
-        "size": 9,
-        "value": 2
-      },
-      {
-        "size": 7,
-        "value": 0
-      },
-      {
-        "size": 3,
+      { 
+        "start" : 89,
+        "end" : 145,
         "value": -2,
         "connection": 1,
         "offset": 0.2
       },
-      {
-        "size": 12,
+      { 
+        "start" : 160,
+        "end" : 220,
         "value": 2
       },
-      {
-        "size": 9,
-        "value": 2
-      },
-      {
-        "size": 7,
-        "value": 1
-      },
-      {
-        "size": 3,
-        "value": -2
-      },
-      {
-        "size": 12,
-        "value": 0
-      },
-      {
-        "size": 9,
-        "value": 2
-      },
-      {
-        "size": 29,
+      { 
+        "start" : 220,
+        "end" : 340,
         "value": 1,
         "connection": 3,
-        "offset": 0.754
+        "offset": 0.754,
+        "color" : "indigo"
       },
-      {
-        "size": 3,
-        "value": -2
-      },
-      {
-        "size": 12,
-        "value": 2
-      },
-      {
-        "size": 9,
-        "value": 0
-      },
-      {
-        "size": 7,
-        "value": 1
-      },
-      {
-        "size": 1,
-        "value": 1
-      },
-      {
-        "size": 1,
+      { 
+        "start" : 341,
+        "end" : 350,
         "value": -1,
         "connection": 2
-      },
-      {
-        "size": 1,
-        "value": 1
-      },
-      {
-        "size": 1,
-        "value": -1
-      },
-      {
-        "size": 1,
-        "value": 1,
-        "connection": 1
-      },
-      {
-        "size": 1,
-        "value": -1
-      },
-      {
-        "size": 1,
-        "value": 1
-      },
-      {
-        "size": 1,
-        "value": 0
-      },
-      {
-        "size": 1,
-        "value": 1
-      },
-      {
-        "size": 1,
-        "value": -1
       }
     ]
   }
@@ -408,8 +261,8 @@ form {
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="/javascripts/d3.v3.min.js"></script>
+<script src="/javascripts/jquery-2.1.1.js"></script>
 <script>
 
 
@@ -450,11 +303,17 @@ function angle(d) {
 function findSize(content){
 
 
-if(content[0].start){
-
-
 console.log("content is ");
 console.log(content);
+
+
+
+if(content[0].start===0 || content[0].start){
+
+
+if(content[0].start===0){
+  content[0].start=1;
+}
 
 
 var s = [];
@@ -533,15 +392,6 @@ $("#circ").empty();
 
 
 
-/*
-var width = 480,
-    height = 480;
-
-var cluster = d3.layout.cluster()
-    .size([height, width - 160]);
-*/
-
-
 
 
 var width = 1024,
@@ -586,8 +436,33 @@ layer 1
 
 */
 
+
+/*
+
 var pos = findSize(block.layer2.content);
 var ref = block.layer2.content;
+
+*/
+
+
+
+
+
+
+var s2 = [];
+s2 = findSize(block.layer2.content);
+
+var pos = [];
+
+for(i in s2){
+  pos.push(s2[i].s);
+}
+
+
+console.log("+-+---s4 is ---+-+");
+console.log(s2);
+
+
 
 var work = svg.append("g");
 
@@ -595,42 +470,78 @@ work.selectAll("path")
     .data(pie( pos  ))
   .enter().append("path")
 .attr("fill", function(d, i) { 
-        if(ref[i].value>0){
+
+        if(! ('i' in s2[i])  ){
+          return "white";
+        }
+        else{
+
+          if(s2[i].i.color ){
+            return s2[i].i.color;
+          }
+          if(s2[i].i.value && s2[i].i.value>0){
           return "red";
+          }
+          if(s2[i].i.value && s2[i].i.value==0){
+            return "black";    
+          } if(s2[i].i.value && s2[i].i.value<0){
+            return "green";   
+          }
+
+
         }
-        if(ref[i].value==0){
-          return "black";    
-        } if(ref[i].value<0){
-          return "green";   
-        }
-    return "blue";
+
+        
+    return "white";
 })
-    .attr("d", function(d,i){
-        if(d3.select(this).attr("fill")=="red")
-            {var arc2 = d3.svg.arc()
-            .innerRadius(radius - 114 + (6*ref[i].value) )
-            .outerRadius(radius - 114)
-             
-             return arc2(d);
-            }
-        if(d3.select(this).attr("fill")=="black")
-            {
-                var arc3 = d3.svg.arc()
-            .innerRadius(radius - 115  )
-            .outerRadius(radius - 113 )
-                return arc3(d);}
-        if(d3.select(this).attr("fill")=="green")
-            {var arc4 = d3.svg.arc()
-            .innerRadius(radius - 114 + (6*ref[i].value) ) 
-            .outerRadius(radius - 114)
-            return arc4(d);
-            }  
-      var arc3 = d3.svg.arc()
-                  .innerRadius(radius - 114)
-                  .outerRadius(radius - 114)
+     .attr("d", function(d,i){
+
+
+      if('i' in s2[i] ){
+
+          if(d3.select(this).attr("fill")=="red")
+              {var arc2 = d3.svg.arc()
+              .innerRadius(radius - 114 + (6*s2[i].i.value) )
+              .outerRadius(radius - 114)
+               
+               return arc2(d);
+              }
+          if(d3.select(this).attr("fill")=="black")
+              {
+                  var arc3 = d3.svg.arc()
+              .innerRadius(radius - 115  )
+              .outerRadius(radius - 113 )
+                  return arc3(d);}
+          if(d3.select(this).attr("fill")=="green")
+              {var arc4 = d3.svg.arc()
+              .innerRadius(radius - 114 + (6*s2[i].i.value) ) 
+              .outerRadius(radius - 114)
+              return arc4(d);
+              }
+
+          if(d3.select(this).attr("fill") ) {
+              var arc3 = d3.svg.arc()
+                    .innerRadius(radius - 114 + (6*s2[i].i.value) )
+                    .outerRadius(radius - 114)
+                    return arc3(d);
+          }
+
+        }
+
+        else{
+
+        var arc33 = d3.svg.arc()
+                  .innerRadius(radius - 115 )
+                  .outerRadius(radius - 113)
+
+        }
                       
-      return arc3(d);
+      return arc33(d);
     });
+
+
+
+
 
 /*
 
@@ -655,8 +566,26 @@ start layer 2
 */
 
 
+/*
+
 var pos2 = findSize(block.layer3.content);
 var ref2 = block.layer3.content;
+
+*/
+
+
+
+var s3 = [];
+s3 = findSize(block.layer3.content);
+
+var pos2 = [];
+
+for(i in s3){
+  pos2.push(s3[i].s);
+}
+
+
+
 
 var work2 = svg.append("g");
 
@@ -664,41 +593,73 @@ work2.selectAll("path")
     .data(pie( pos2  ))
   .enter().append("path")
 .attr("fill", function(d, i) { 
-        if(ref2[i].value>0){
+
+        if(! ('i' in s3[i])  ){
+          return "white";
+        }
+        else{
+
+          if(s3[i].i.color ){
+            return s3[i].i.color;
+          }
+          if(s3[i].i.value && s3[i].i.value>0){
           return "red";
+          }
+          if(s3[i].i.value && s3[i].i.value==0){
+            return "black";    
+          } if(s3[i].i.value && s3[i].i.value<0){
+            return "green";   
+          }
+
+
         }
-        if(ref2[i].value==0){
-          return "black";    
-        } if(ref2[i].value<0){
-          return "green";   
-        }
-    return "blue";
+
+        
+    return "white";
 })
     .attr("d", function(d,i){
-        if(d3.select(this).attr("fill")=="red")
-            {var arc2 = d3.svg.arc()
-            .innerRadius(radius - 160 + (6*ref2[i].value) )
-            .outerRadius(radius - 160)
-             
-             return arc2(d);
-            }
-        if(d3.select(this).attr("fill")=="black")
-            {
-                var arc3 = d3.svg.arc()
-            .innerRadius(radius - 161  )
-            .outerRadius(radius - 159 )
-                return arc3(d);}
-        if(d3.select(this).attr("fill")=="green")
-            {var arc4 = d3.svg.arc()
-            .innerRadius(radius - 160 + (6*ref2[i].value) ) 
-            .outerRadius(radius - 160)
-            return arc4(d);
-            }  
-      var arc3 = d3.svg.arc()
-                  .innerRadius(radius - 160)
-                  .outerRadius(radius - 160)
+
+
+      if('i' in s3[i] ){
+
+          if(d3.select(this).attr("fill")=="red")
+              {var arc2 = d3.svg.arc()
+              .innerRadius(radius - 160 + (6*s3[i].i.value) )
+              .outerRadius(radius - 160)
+               
+               return arc2(d);
+              }
+          if(d3.select(this).attr("fill")=="black")
+              {
+                  var arc3 = d3.svg.arc()
+              .innerRadius(radius - 161  )
+              .outerRadius(radius - 159 )
+                  return arc3(d);}
+          if(d3.select(this).attr("fill")=="green")
+              {var arc4 = d3.svg.arc()
+              .innerRadius(radius - 160 + (6*s3[i].i.value) ) 
+              .outerRadius(radius - 160)
+              return arc4(d);
+              }
+
+          if(d3.select(this).attr("fill") ) {
+              var arc3 = d3.svg.arc()
+                    .innerRadius(radius - 160 + (6*s3[i].i.value) )
+                    .outerRadius(radius - 160)
+                    return arc3(d);
+          }
+
+        }
+
+        else{
+
+        var arc33 = d3.svg.arc()
+                  .innerRadius(radius - 161 )
+                  .outerRadius(radius - 159)
+
+        }
                       
-      return arc3(d);
+      return arc33(d);
     });
 
 
@@ -747,7 +708,7 @@ outer.selectAll("path")
     .attr("fill", function(d, i) { 
 
       if(! ('i' in s1[i])  ){
-        return "black";
+        return "white";
       }
       
       if(s1[i].i.color){
@@ -859,23 +820,22 @@ if(s1[e].i){
 
 
 
-/*
 
-var arc5 = d3.svg.arc()
-    .innerRadius(radius - 180)
-    .outerRadius(radius - 180);
 
-    
-var innerMost = svg.append("g");
 
-innerMost.selectAll("path")
-    .data(pie(outerData))
-  .enter().append("path")
-    .attr("fill", function(d, i) { 
-      return "blue"; })
-    .attr("d", arc5);
 
-*/
+
+
+
+
+
+
+
+
+console.log("---------------------s3");
+console.log(s3);
+
+
 
 
 
@@ -886,15 +846,18 @@ var numCons = 0;
 
 work2.selectAll("path").each(function(i,e){
     
+
+    console.log(e);
+
     var p = {};
     var c = null;
     var offsetClone = {};
 
 
 
-    if('offset' in block.layer3.content[e] && block.layer3.content[e].offset>=0.0 && block.layer3.content[e].offset<=1.0){
+    if(s3[e].i && 'offset' in s3[e].i && s3[e].i.offset>=0.0 && s3[e].i.offset<=1.0){
 
-      var off = block.layer3.content[e].offset;
+      var off = s3[e].i.offset;
       
       offsetClone.startAngle = i.startAngle;
       offsetClone.endAngle = i.startAngle + off*2*(i.endAngle - i.startAngle);
@@ -917,8 +880,8 @@ work2.selectAll("path").each(function(i,e){
     }
 
 
-            if(block.layer3.content[e].connection && block.layer3.content[e].connection>0) {
-              p.c = block.layer3.content[e].connection;
+            if(s3[e].i && 'connection' in s3[e].i && s3[e].i.connection>0) {
+              p.c = s3[e].i.connection;
                 if(p.c>numCons){
                   numCons=p.c;
                 }

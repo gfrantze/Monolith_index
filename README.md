@@ -34,3 +34,7 @@ v1.3
 v1.4
 -cleaned up intersection app significantly
 -added dynamic routes to treemap tool
+
+v2.0
+-added Data Layers tool
+
