@@ -2,8 +2,8 @@
  
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
@@ -62,10 +62,6 @@ form {
 
 
 <div class="container-fluid">
-
-
-
-  <a href="/">home</a>
 
   <div class="row">
 
@@ -133,7 +129,7 @@ form {
       },
       {
         "start" : 180,
-        "end" : 360,
+        "end" : 340,
         "color": "green",
         "text": [
           {
@@ -303,10 +299,6 @@ function angle(d) {
 function findSize(content){
 
 
-console.log("content is ");
-console.log(content);
-
-
 
 if(content[0].start===0 || content[0].start){
 
@@ -327,12 +319,13 @@ var s = [];
       s.push({"s":item.end-item.start, "r":true, "i":item});      
     }
 
-    if (i>0 && i<content.length){
+    if (i>0 && i<content.length-1){
       s.push({"s":item.start-content[i-1].end, "r":false});
       s.push({"s":item.end-item.start, "r":true, "i":item});
     }
 
-    if ( i === content.length ) {
+    if ( i == content.length-1 ) {
+
       s.push({"s":item.start-content[i-1].end, "r":false});
       s.push({"s":item.end-item.start, "r":true, "i":item});
       s.push({"s":360-item.end, "r":false});
@@ -350,8 +343,6 @@ var s = [];
   }
 
 
-console.log("return value glitch in the matrix");
-console.log(s);
 return s;
 
 }
@@ -457,10 +448,6 @@ var pos = [];
 for(i in s2){
   pos.push(s2[i].s);
 }
-
-
-console.log("+-+---s4 is ---+-+");
-console.log(s2);
 
 
 
@@ -704,7 +691,7 @@ var outer = svg.append("g");
 
 outer.selectAll("path")
     .data(pie( outerData ))
-  	.enter().append("path")
+    .enter().append("path")
     .attr("fill", function(d, i) { 
 
       if(! ('i' in s1[i])  ){
@@ -731,7 +718,14 @@ original_copy = {};
 original_copy = i;
 
 
+console.log(s1);
+
+
 if(s1[e].i){
+
+
+  console.log("------text is ------");
+  console.log(s1[e].i.text);
 
     //for (it in block.layer1.content[e].text){
       for(it in s1[e].i.text){
@@ -832,10 +826,6 @@ if(s1[e].i){
 
 
 
-console.log("---------------------s3");
-console.log(s3);
-
-
 
 
 
@@ -847,7 +837,6 @@ var numCons = 0;
 work2.selectAll("path").each(function(i,e){
     
 
-    console.log(e);
 
     var p = {};
     var c = null;
