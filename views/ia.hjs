@@ -194,9 +194,14 @@
 
 </div>
 
-<button type="button" onclick="prep_export()">Save gene lists as .tsv</button>
-<button id="save">Save Venn as .png</button>
-<div id="svgdataurl"></div>
+<button type="button" onclick="prep_export()">Export lists</button>
+<button id="save">Export venn as .png</button>
+<button id="save_as_svg">Export venn as SVG</button>
+
+<form id="svg_export_form" method="POST" style="display:none;visibility:hidden">
+    <input type="hidden" name="svg" />
+</form>
+
 <div id="pngdataurl"></div>
 <canvas width="960" height="500" style="display:none"></canvas>
 

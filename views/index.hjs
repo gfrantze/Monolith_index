@@ -62,19 +62,19 @@
 	<div class="row">
 
 		<div class="col-xs-4 tool">
-				<b>Markers Gene Set Intersection Finder</b>
+				<b>EulerPlotter</b>
 				<a href="/ia"></a><br>
 				<img src="/images/venn.png"/>
 		</div>
 		
 		<div class="col-xs-4 tool">
-				<b>Disk Image Treemap Viewer</b>
+				<b>DiskTreeView</b>
 				<a href="/tml"></a><br>
-				<img src="/images/d3-js-treemap.jpg"/>
+				<img src="/images/treemap.png"/>
 		</div>
 
 		<div class="col-xs-4 tool">
-				<b>Markers Lollipop Generator</b>
+				<b>TGenLollipop</b>
 				<a href="/lol"></a><br>
 				 <span class="helper"></span><img src="/images/lollipop_example.png"/>
 		</div>
@@ -85,7 +85,7 @@
 	<div class="row">
 
 		<div class="col-xs-4 tool">
-			<b>Circos</b>
+			<b>BandedGram</b>
 			<a href="/circ"></a><br>
 			<span class="helper"></span><img src="/images/Fibonacci_Circle_1.jpg" />
 		</div>

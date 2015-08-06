@@ -532,6 +532,28 @@ function nullcheck(data, a, b, c, d) {
 }
 
 
+
+function exportSVG() {
+
+
+var x = new XMLSerializer();
+
+var content = x.serializeToString($("svg")[0] );
+
+
+$('#svg_export_form > input[name=svg]').val( content );
+$('#svg_export_form').attr('action','ia/svg');
+$('#svg_export_form').submit();
+
+
+}
+
+
+
+
+
+
+
 function prep_export() {
 
 
@@ -548,8 +570,6 @@ function prep_export() {
 
         var encodedUri = encodeURI(csvContent);
         window.open(encodedUri);
-
-
 
 }
 
@@ -776,6 +796,10 @@ $("#zz").chosen({max_selected_options: 4, width:"95%"});
         heightStyle: "content",
         navigation: true
     });
+
+
+ $("#save_as_svg").click(function() { exportSVG(); });
+
 
 });
 

@@ -125,6 +125,20 @@ var o = req.body.option;
 
 
 
+
+router.post('/svg', function(req,res,next){
+
+
+res.set({"Content-Disposition":"attachment; filename=\"myvenn.svg\""});
+res.send(req.body.svg);
+
+
+});
+
+
+
+
+
 router.get('/loadDb', function(req, res, next) {
 
 

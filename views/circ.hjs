@@ -91,8 +91,10 @@ form {
     "content": [
       {
         "start" : 10,
-        "end" : 80,
+        "end" : 90,
         "color": "red",
+        "stroke": "black",
+        "strokewidth" : 4,
         "text": [
           {
             "val": "this is a test",
@@ -172,7 +174,9 @@ form {
         "start" : 150,
         "end" : 190,
         "color" : "orange",
-        "value": 2
+        "value": 2,
+        "stroke" : "blue",
+        "strokewidth" : 5
       },
       {
         "start" : 200,
@@ -236,7 +240,9 @@ form {
         "value": 1,
         "connection": 3,
         "offset": 0.754,
-        "color" : "indigo"
+        "color" : "indigo",
+        "stroke" : "yellow",
+        "strokewidth" : 2
       },
       { 
         "start" : 341,
@@ -481,6 +487,28 @@ work.selectAll("path")
         
     return "white";
 })
+.attr("stroke", function(d,i){
+
+
+      if(! ('i' in s2[i])  ){
+        return "white";
+      }
+      if(s2[i].i.stroke){
+        return s2[i].i.stroke;
+      }
+
+    })
+    .attr("stroke-width", function(d,i){
+
+
+      if(! ('i' in s2[i])  ){
+        return 0;
+      }
+      if(s2[i].i.strokewidth){
+        return s2[i].i.strokewidth;
+      }
+
+    })
      .attr("d", function(d,i){
 
 
@@ -604,6 +632,30 @@ work2.selectAll("path")
         
     return "white";
 })
+.attr("stroke", function(d,i){
+
+
+      if(! ('i' in s3[i])  ){
+        return "white";
+      }
+      if(s3[i].i.stroke){
+        return s3[i].i.stroke;
+      }
+
+
+
+    })
+    .attr("stroke-width", function(d,i){
+
+
+      if(! ('i' in s3[i])  ){
+        return 0;
+      }
+      if(s3[i].i.strokewidth){
+        return s3[i].i.strokewidth;
+      }
+
+    })
     .attr("d", function(d,i){
 
 
@@ -705,6 +757,30 @@ outer.selectAll("path")
 
       
       return color(i); })
+    .attr("stroke", function(d,i){
+
+
+      if(! ('i' in s1[i])  ){
+        return "white";
+      }
+      if(s1[i].i.stroke){
+        return s1[i].i.stroke;
+      }
+
+
+
+    })
+    .attr("stroke-width", function(d,i){
+
+
+      if(! ('i' in s1[i])  ){
+        return 0;
+      }
+      if(s1[i].i.strokewidth){
+        return s1[i].i.strokewidth;
+      }
+
+    })
     .attr("d", arc);
 
 

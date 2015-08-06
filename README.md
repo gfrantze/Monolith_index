@@ -38,3 +38,5 @@ v1.4
 v2.0
 -added Data Layers tool
 
+v2.1
+-added styling features to data layers tool and export to svg for venn tool
