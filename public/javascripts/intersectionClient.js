@@ -407,13 +407,51 @@ function geneList() {
 
 
 
+
+
+// spam abcd
+    set.iaNab = arr_diff(set.origA, set.iab);
+    set.iaNac = arr_diff(set.origA, set.iac);
+    set.iaNad = arr_diff(set.origA, set.iad);
+    set.iaNbc = arr_diff(set.origA, set.ibc);
+    set.iaNbd = arr_diff(set.origA, set.ibd);
+    set.iaNcd = arr_diff(set.origA, set.icd);
+
+    set.ibNab = arr_diff(set.origB, set.iab);
+    set.ibNac = arr_diff(set.origB, set.iac);
+    set.ibNad = arr_diff(set.origB, set.iad);
+    set.ibNbc = arr_diff(set.origB, set.ibc);
+    set.ibNbd = arr_diff(set.origB, set.ibd);
+    set.ibNcd = arr_diff(set.origB, set.icd);
+
+
+    set.icNab = arr_diff(set.origC, set.iab);
+    set.icNac = arr_diff(set.origC, set.iac);
+    set.icNad = arr_diff(set.origC, set.iad);
+    set.icNbc = arr_diff(set.origC, set.ibc);
+    set.icNbd = arr_diff(set.origC, set.ibd);
+    set.icNcd = arr_diff(set.origC, set.icd);
+
+
+    set.idNab = arr_diff(set.origD, set.iab);
+    set.idNac = arr_diff(set.origD, set.iac);
+    set.idNad = arr_diff(set.origD, set.iad);
+    set.idNbc = arr_diff(set.origD, set.ibc);
+    set.idNbd = arr_diff(set.origD, set.ibd);
+    set.idNcd = arr_diff(set.origD, set.icd);
+ 
+//end spam
+
+
+
+
+
+
+
     set.iabc = intersect(set.iab, set.iac);
     set.iabd = intersect(set.iab, set.ibd);
     set.iacd = intersect(set.iac, set.icd);
     set.ibcd = intersect(set.ibc, set.icd);
-
-
-
 
 
 if(set.origA && set.origB && set.origC){
@@ -457,6 +495,8 @@ if(set.origA && set.origB && set.origC){
 
     set.iabcd = intersect(set.iab, set.icd);
 
+
+
     set.ab = set.iab.length;
     set.ac = set.iac.length;
     set.ad = set.iad.length;
@@ -484,6 +524,7 @@ if(set.origA && set.origB && set.origC){
     if (set.origA && set.origB && set.origC && set.origD) {
         fourSetBoilerPlate(set);
     }
+
 
     $("#load_icon").hide();
 
@@ -732,35 +773,61 @@ $("ul.nav-tabs a").click(function(e) {
 
 d3.select("#save").on("click", function() {
 
+    var image = 0;
+    var imgsrc = 0;
+    var img = 0;
+    var canvas = 0;
+    var pngimg = 0;
+    var canvasdata = 0;
+    var a = 0;
+    var html = 0;
+
+
     $("canvas").hide();
     $("#svgdataurl").hide();
     $("#pngdataurl").hide();
 
-    var html = d3.select("svg")
+    html = d3.select("svg")
         .attr("version", 1.1)
         .attr("xmlns", "http://www.w3.org/2000/svg")
         .node().parentNode.innerHTML;
 
-    var imgsrc = 'data:image/svg+xml;base64,' + btoa(html);
-    var img = '<img src="' + imgsrc + '">';
+    console.log(html);
+
+    imgsrc = 'data:image/svg+xml;base64,' + btoa(html);
+
+    console.log(imgsrc);
+    img = '<img src="' + imgsrc + '">';
+    console.log(img);
+
     d3.select("#svgdataurl").html(img);
 
 
-
-    var canvas = document.querySelector("canvas"),
+    canvas = document.querySelector("canvas"),
         context = canvas.getContext("2d");
 
-    var image = new Image;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    console.log(canvas);
+    console.log(context);
+
+    image = new Image;
     image.src = imgsrc;
+
+    console.log(image);
+
     image.onload = function() {
         context.drawImage(image, 0, 0);
 
-        var canvasdata = canvas.toDataURL("image/png");
+        canvasdata = canvas.toDataURL("image/png");
+        console.log(canvasdata);
 
-        var pngimg = '<img src="' + canvasdata + '">';
+        pngimg = '<img src="' + canvasdata + '">';
+
+        console.log(pngimg);
         d3.select("#pngdataurl").html(pngimg);
 
-        var a = document.createElement("a");
+        a = document.createElement("a");
         a.download = "sample.png";
         a.href = canvasdata;
         a.click();

@@ -40,3 +40,6 @@ v2.0
 
 v2.1
 -added styling features to data layers tool and export to svg for venn tool
+
+v2.2
+-.png bugfix and additional sets
