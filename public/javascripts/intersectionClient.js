@@ -633,10 +633,10 @@ $('#somebutton').click(function() {
     if (ajaxInProg) {
 
         if( $("#zz").val() && $("#zz").val()>0  ){
-            alert("warning,algorithm is working")
+            alert("warning,algorithm is working");
         }
         else{
-            alert("no samples picked")
+            alert("wait  or switch samples");
 
         }
     } else {

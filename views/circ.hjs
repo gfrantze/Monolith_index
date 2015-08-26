@@ -85,7 +85,7 @@ form {
     "font": "helvetica",
     "fontSize": "11px",
     "padAngle": 0,
-    "textDistance": -4
+    "textDistance": 12
   },
   "layer1": {
     "content": [
@@ -785,25 +785,18 @@ outer.selectAll("path")
 
 
 
-
-
-
 outer.selectAll("path").each(function(i,e){
 
 original_copy = {};
 original_copy = i;
 
 
-console.log(s1);
 
 
 if(s1[e].i){
 
 
-  console.log("------text is ------");
-  console.log(s1[e].i.text);
 
-    //for (it in block.layer1.content[e].text){
       for(it in s1[e].i.text){
 
       var offsetTest = {};
@@ -821,9 +814,6 @@ if(s1[e].i){
       var f = block.settings.font;
 
       offsetTest.endAngle = original_copy.startAngle + off*2*(original_copy.endAngle - original_copy.startAngle);
-
-
-
 
 
       if('offset' in ref && off>=0.0 && off<=1.0){
@@ -851,6 +841,46 @@ if(s1[e].i){
             .text( t );
 
 
+
+
+/*
+            console.log('test');
+
+  
+            var cc = arc.centroid(te_),
+              xx = c[0],
+              yy = c[1],
+              // pythagorean theorem for hypotenuse
+              hh = Math.sqrt(x*x + y*y)+242;
+
+              var cur = svg.append("g")
+                  .attr("fill", "none");
+
+
+              var curved = d3.svg.line()
+                  .x(function(d) { return d.x; })
+                  .y(function(d) { return d.y; })
+                  .interpolate("cardinal")
+                  .tension(0);
+
+
+              var x1 = xx/h*labelr;
+              var y1 = yy/h*labelr;
+
+              var x2 = x1+32;
+              var y2 = y1;
+
+
+              var draw = [ {x: x1, y: y1}, {x:x2, y:y2}];
+
+              console.log(draw);
+
+              cur.append("path").attr("d", curved(draw)).attr("stroke", "#000");
+
+              */
+
+
+
       }else{
 
         var c = arc.centroid(original_copy),
@@ -860,6 +890,7 @@ if(s1[e].i){
           h = Math.sqrt(x*x + y*y)-block.settings.textDistance;
 
 
+          console.log("test");
 
           var te_ = outer.append("svg:text")
             .attr("transform", function(d) {
@@ -874,13 +905,10 @@ if(s1[e].i){
             .style("font-size", fs)
             .style("font-family", f)
             .text( t );
+      
 
       }
       
-
-        
-
-
     }
 
   }
@@ -914,9 +942,9 @@ work2.selectAll("path").each(function(i,e){
     
 
 
-    var p = {};
+    var p = { };
     var c = null;
-    var offsetClone = {};
+    var offsetClone = { };
 
 
 
@@ -1008,7 +1036,6 @@ cur.append("path").attr("d", curved(draw)).attr("stroke", "#000");
 }
 
 if(temp.length>2){
-
 
 
   for(item in temp){
